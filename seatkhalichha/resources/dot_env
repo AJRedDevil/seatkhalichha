@@ -1,0 +1,6 @@
+export LOCAL_SECRET_KEY='!p5z9v6-sk^0%4pm8@cxl+#vo1%k%trtz!kjfpfb*+yca7dqri'
+export DJANGO_SETTINGS_MODULE='seatkhalichha.settings'
+export DJANGO_COLORS="light"
+export MANDRILL_API_KEY=''
+export ADMIN_EMAIL='gaurav.ghimire@gmail.com'
+export GOOGLE_API_KEY=''
