@@ -85,8 +85,8 @@ def signin(request):
         if auth_form.errors:
             logger.debug("Login Form has errors, %s ", auth_form.errors)
 
-    return redirect('index')
-    # return render(request, 'signin.html', locals())
+    # return redirect('index')
+    return render(request, 'signin.html', locals())
 
 
 def signup(request):
@@ -225,7 +225,7 @@ def home(request):
     # if user.is_staff or user.is_superuser:
     #     return render(request, 'admin/joblist.html', locals())
 
-    return render(request, 'admin/joblist_user.html', locals())
+    return render(request, 'admin/list_rideshares.html', locals())
 
 
 # @login_required

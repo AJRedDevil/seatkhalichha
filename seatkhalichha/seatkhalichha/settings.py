@@ -195,9 +195,16 @@ PIPELINE_CSS = {
     'web_yellow': {
         'source_filenames': (
           'css/web_yellow.sass',
-          'css/popup.css'
+          'css/popup.css',
         ),
         'output_filename': 'css/web_yellow.css',
+    },
+    'signin': {
+        'source_filenames': (
+          'css/animate.css',
+          'css/style.css'
+        ),
+        'output_filename': 'css/signin.css',
     },
     'admin': {
         'source_filenames': (
