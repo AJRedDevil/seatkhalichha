@@ -31,10 +31,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis',
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'south',
     'pipeline',
     'apps.users',
+    'apps.search',
+    'apps.faq',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +57,7 @@ AUTHENTICATION_BACKENDS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.core.context_processors.media',
-    'django.contrib.auth.context_processors.auth',
+    # 'django.contrib.auth.context_processors.auth',
 )
 # TEMPLATE PATH CONFIGURATION
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
@@ -177,30 +179,31 @@ except ImportError:
 
 
 # # for static file management
-# STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
 )
-# PIPELINE_SASS_BINARY = "sassc"
-# PIPELINE_COMPILERS = (
-#     'pipeline.compilers.sass.SASSCompiler',
-# )
+PIPELINE_SASS_BINARY = "sassc"
+PIPELINE_COMPILERS = (
+    'pipeline.compilers.sass.SASSCompiler',
+)
 
-# PIPELINE_CSS = {
-#     'web_yellow': {
-#         'source_filenames': (
-#           'css/web_yellow.sass',
-#           'css/popup.css'
-#         ),
-#         'output_filename': 'css/web_yellow.css',
-#     },
-#     'admin': {
-#         'source_filenames': (
-#           'css/bootstrap.css',
-#           'css/admin.sass',
-#         ),
-#         'output_filename': 'css/admin.css',
-#     },
-# }
+PIPELINE_CSS = {
+    'web_yellow': {
+        'source_filenames': (
+          'css/web_yellow.sass',
+          'css/popup.css'
+        ),
+        'output_filename': 'css/web_yellow.css',
+    },
+    'admin': {
+        'source_filenames': (
+          'css/bootstrap.css',
+          'css/admin.sass',
+        ),
+        'output_filename': 'css/admin.css',
+    },
+}

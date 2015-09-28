@@ -1,0 +1,42 @@
+{% extends "landingbase.html" %}
+{% load staticfiles %}
+{% block content %}
+<!-- video -->
+<div class="mobile">
+	<div class="contents">
+		<div class="links">
+			<ul>
+				<li> <a href="{% url 'signin' %}">Sign In</a> </li>
+				<li> <a href="{% url 'signup' %}">Sign Up</a> </li>
+				<li> <a href="{% url 'faq' %}">FAQs</a> </li>
+				<!-- <li> <a href="FAQ">Social</a> </li> -->
+			</ul>
+
+		</div>
+		<footer>
+			<div class="btn">
+				<div class="register">
+					Need to be somewhere? <br>
+					Don't have a vehicle? <br>
+					Or are out of fuel? <br>	
+				</div>
+
+			</div><br>
+			<p>Amidst all this crisis and chaos, this is a small effort to help you get a ride. A friend in need is a friend indeed!</p><br><br>
+			<div class='sms'>**By continuing you agree to the terms and conditions!</div>
+			<div class='social'>
+				<ul>
+					<li><a href='http://facebook.com/homerepairapp' target='_blank'> <img src={% static 'img/fb.png' %}></a></li>
+					<li><a href='http://twitter.com/homerepairapp' target='_blank'> <img src={% static 'img/tw.png' %}></a></li>
+
+				</ul>
+			</div>
+		</footer>
+	</div>
+
+	<!-- eo content -->
+
+
+</div>
+<!--Float right End-->
+{% endblock content %}

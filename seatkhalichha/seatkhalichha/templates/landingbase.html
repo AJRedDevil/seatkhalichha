@@ -1,0 +1,53 @@
+{% load pipeline %}
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+    <title>The Homerepair App!</title>
+    <!--Montserrat font css-->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!--Montserrat font css -->
+
+    <!--Source sans pro font css-->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet' type='text/css'>
+    <!-- Meta Property -->
+    <meta property="og:title" content="The Homerepair App" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.thehomerepairapp.com" />
+    <meta property="og:image" content="http://www.thehomerepairapp.com/static/img/logo-fb-og.png" />
+    <link rel="image_src" type="image/jpeg" href="http://www.thehomerepairapp.com/static/img/logo-fb-og.png" />
+    <!--Source sans pro font css-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    {% stylesheet 'web_yellow' %}
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-58270740-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+
+    </script>
+</head>
+<style>
+
+
+@media screen and (max-width: 960px)
+{
+
+}
+</style>
+
+<body id='top'>
+    <!--Float right Start-->
+    <div class="wrapper">
+
+        <!-- eo brand -->
+{% block content %}
+{% endblock content %}
+</body>
+<script type="text/javascript" src={% static 'js/web_yellow.js' %}></script>
+<script type="text/javascript" src={% static 'js/popup.js' %}></script>
+</html>

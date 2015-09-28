@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>This is home page</h1>
+
+Current Open Jobs
+{% for job in jobs  %}
+<p>
+    ============<br>
+    JobType : {{job.get_jobtype_display}}<br>
+    Requested By :  {{job.customer.name}}( {{job.customer.phone}} )<br>
+    Details = <a href="{% url 'viewJob' job_id=job.jobref %}">{{job.jobref}}</a><br>
+    Status = {{job.get_status_display}}<br>
+    Handyman = {{ job.handyman.all | join:", "}}<br>
+    ============
+</p>
+{% endfor %}
+
+{% endblock content %}
