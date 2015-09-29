@@ -20,6 +20,7 @@ import handler as user_handler
 from phonenumber_field.phonenumber import PhoneNumber as intlphone
 from seatkhalichha.decorators import is_superuser, is_verified
 from .models import UserProfile
+from apps.carpools.handler import CarpoolReqManager
 import apps.users.forms as userforms
 
 #All external imports (libs, packages)
@@ -223,6 +224,8 @@ def signup(request):
 def home(request):
     """Post login this is returned and displays user's home page"""
     user = request.user
+    crm = CarpoolReqManager()
+    carpool_requests = crm.getMyCarpoolReqs(user)
     ##Acquire all the current open jobs related to the user
     # from apps.jobs.handler import JobManager
     # jb = JobManager()
@@ -230,7 +233,7 @@ def home(request):
     # if user.is_staff or user.is_superuser:
     #     return render(request, 'admin/joblist.html', locals())
 
-    return render(request, 'admin/list_rideshares.html', locals())
+    return render(request, 'homepage.html', locals())
 
 
 # @login_required

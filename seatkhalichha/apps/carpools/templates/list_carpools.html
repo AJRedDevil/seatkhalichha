@@ -1,0 +1,63 @@
+{% extends "admin/base.html" %}
+{% block content %}
+    <div class='page-container container landing-table'>
+        <h1>Recent Carpools</h1>
+
+    <div class="hora-table">
+        
+    <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Vehicle Type</th>
+                    <th>Status</th>
+                    <th>Occupancy</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+     
+            <tfoot>
+                <tr>
+                    <th>Date</th>
+                    <th>Vehicle Type</th>
+                    <th>Status</th>
+                    <th>Occupancy</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+     
+            <tbody>
+
+            {% for carpool in carpools %}
+                <tr>
+                    <td>{{carpool.creation_date}}</td>
+                    <td>{{carpool.get_vehicle_type_display}}</td>
+                    <td>{{carpool.get_status_display}}</td>
+                    <td>{{carpool.occupancy}}</td>
+                    <td>{{carpool.remarks}}</td>
+                    <td>
+                        <a href="{% url 'viewCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Details</button></a>
+                    </td>
+                </tr>                
+            {% endfor %}                
+            </tbody>
+        </table>
+
+    </div>
+    <!-- eo hora-table -->
+
+    </div>
+{% endblock content %}
+{% block scripts %}
+    
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable( {
+          responsive: true,
+          "bFilter": false
+      } );
+    } );
+    </script>
+{% endblock %}

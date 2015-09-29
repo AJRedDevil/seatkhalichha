@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'pipeline',
     'apps.users',
     'apps.search',
+    'apps.carpools',
     'floppyforms',
     # 'apps.faq',
     'social.apps.django_app.default',
@@ -243,6 +244,12 @@ PIPELINE_CSS = {
             'css/admin.sass',
         ),
         'output_filename': 'css/signin.css',
+    },
+    'home': {
+        'source_filenames': (
+            'css/homepage.css',
+        ),
+        'output_filename': 'css/home.css',
     },
     'admin': {
         'source_filenames': (

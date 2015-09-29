@@ -16,5 +16,6 @@ urlpatterns = patterns(
     url(r'^users/', include('apps.users.urls')),
     url(r'^search/', include('apps.search.urls')),
     url(r'^faq/', include('apps.faq.urls')),
+    url(r'^carpool/', include('apps.carpools.urls')),
     url(r'^$', index, name='index'),
 )

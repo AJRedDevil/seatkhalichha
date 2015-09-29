@@ -1,18 +1,89 @@
-{% extends "base.html" %}
+{% extends "admin/base.html" %}
+{% load pipeline %}
+{% load staticfiles %}
+{% block localhead %}
+{% stylesheet 'home' %}
+{% endblock localhead %}
 {% block content %}
-<h1>This is home page</h1>
+<div class='container'>
+    <div class='banner-container'>
+        <div class="row">
+                <h1 class="banner-title">Welcome to seatkhalicha.com !</h1>
+                <p class="banner-text">Considering how hard it's been for us since last few weeks in commuting to/from work,school and other places of interest and emergencies. "setakhalicha.com" was born out of sheer desire to come out with a central portal that could help wonderful, kind-hearted, generous individuals, who have taken it a step further and helped other needy people hitch a ride in their cards/bikes. Even though the world may come to a halt, but we cannot let this current state of affairs keep us from doing what we do best.</p>
 
-Current Open Jobs
-{% for job in jobs  %}
-<p>
-    ============<br>
-    JobType : {{job.get_jobtype_display}}<br>
-    Requested By :  {{job.customer.name}}( {{job.customer.phone}} )<br>
-    Details = <a href="{% url 'viewJob' job_id=job.jobref %}">{{job.jobref}}</a><br>
-    Status = {{job.get_status_display}}<br>
-    Handyman = {{ job.handyman.all | join:", "}}<br>
-    ============
-</p>
-{% endfor %}
+                <p class="banner-text">With "seatkhalicha" you can either put yourself/your vehicle up for a carpool at a scheduled date/time. OR, you can request to be carpooled if you happen to fall in the commute route of the carpooler</p>
+                <p class="banner-text">If you are looking to share a ride with the folks who are in the lookout for one, click "Share". Else, if like many of us, you are looking for someone who would help pick you up, click "Request" .</p>
+                <p class="banner-text">They might not ask for it, but please show some love and respect towards those who've helped you!</p>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <a href="{% url 'listAllCarpools' %}" class="btn-big btn-plain-alt btn-xxlarge btn-hire banner-hire">
+                        Request
+                    </a>
+                    <a href="{%url 'createCarpool' %}" class="btn-big btn-plain-alt btn-xxlarge btn-work banner-work">
+                        Share
+                    </a>
+                </div>
+                <div class="col-md-4"></div>
+
+        </div>
+    </div>
+    <div class="hora-table">
+    <br><br>
+    <h1 class="banner-title">Applications to your carpools!</h1>
+    <br><br>        
+    <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Carpool Name</th>
+                    <th>Rider's Name</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+     
+            <tfoot>
+                <tr>
+                    <th>Carpool Name</th>
+                    <th>Rider's Name</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+     
+            <tbody>
+
+            {% for request in carpool_requests %}
+                <tr>
+                    <td>{{request.carpool.route}}</td>
+                    <td>{{request.rider.name}}</td>
+                    <td>{{request.rider.phone}}</td>
+                    <td>{{request.message}}</td>
+                    <td>
+                        <a href="#"><button class='table-job-check'>Accept</button></a>
+                        <a href="#"><button class='table-job-check'>Reject</button></a>
+                    </td>
+                </tr>                
+            {% endfor %}                
+            </tbody>
+        </table>
+
+    </div>
+    <!-- eo hora-table -->
+
+    </div>
+</div>
 
 {% endblock content %}
+{% block scripts %}
+    
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable( {
+          responsive: true,
+          "bFilter": false
+      } );
+    } );
+    </script>
+{% endblock %}
