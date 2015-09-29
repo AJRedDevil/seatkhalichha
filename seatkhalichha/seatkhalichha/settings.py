@@ -159,7 +159,7 @@ LOGGING = {
             'level': 'WARN',
         },
         'apps.users': {
-            'handlers': ['file'],
+            'handlers': ['console'],
             'propagate': True,
             'level': 'WARN',
         },
@@ -236,6 +236,8 @@ PIPELINE_CSS = {
     },
     'signin': {
         'source_filenames': (
+            'css/font-awesome.min.css',
+            'css/bootstrap-social.css',
             'css/animate.css',
             'css/webstyle.css',
             'css/admin.sass',

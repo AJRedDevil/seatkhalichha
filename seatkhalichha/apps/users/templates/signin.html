@@ -34,16 +34,13 @@
                 {% endif %}
                   </p>
           </div>
-          <button type="submit" class="ibox-tools btn btn-primary block full-width m-b" ng-disabled="form.$invalid || isUnchanged(user)">Login</button>
-          <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter</a>
-          <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook</a>
-
-        
-          <p class="text-muted text-center"><small>Do not have an account?</small></p>
+            <button type="submit" class="btn btn-primary btn-block full-width m-b" ng-disabled="form.$invalid || isUnchanged(user)">Login</button>
+            <p class="text-muted text-center"><small>Or signup using ...</small></p>
+            <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><i class="fa fa-facebook"></i>Facebook</a>
+            <a class="btn btn-block btn-social btn-twitter" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><i class="fa fa-twitter"></i>Twitter</a>
+          <p class="text-muted text-center"><small>Don't have an acount yet ?</small></p>
           <a class="btn btn-default btn-block" href="{% url 'signup'%}"{>Create an account</a>
-        
-      </form>
-      <small>Seatkhalicha is powered by Doorsteps</a> &copy; 2015</small>
+        <small>Seatkhalicha is powered by Doorsteps</a> &copy; 2015</small>
     </div>
     <div class="col-md-4"></div>
   </div>
