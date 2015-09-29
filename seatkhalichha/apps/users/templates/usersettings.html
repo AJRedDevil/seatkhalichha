@@ -13,16 +13,18 @@
     <div class='row'>
         <div class="col-md-4">
             <form action="" method="post" enctype='multipart/form-data'>{% csrf_token %}
-                <div class="form-group">
-                  <label>Profile Picture</label><br>
-                  <img src="{{user.get_profile_pic}}"></img><br>
-                  {% if user.thumbnail_exists %}
-                  <input id="profile_image-clear_id" name="profile_image-clear" type="checkbox">
-                  <label for="profile_image-clear_id">Remove</label>
-                  {% endif %}
-                  <input id="id_profile_image" name="profile_image" type="file">
-                  {{user_form.profile_image.errors}}
-                </div>
+                {% comment %}
+                  <div class="form-group">
+                    <label>Profile Picture</label><br>
+                    <img src="{{user.get_profile_pic}}"></img><br>
+                    {% if user.thumbnail_exists %}
+                    <input id="profile_image-clear_id" name="profile_image-clear" type="checkbox">
+                    <label for="profile_image-clear_id">Remove</label>
+                    {% endif %}
+                    <input id="id_profile_image" name="profile_image" type="file">
+                    {{user_form.profile_image.errors}}
+                  </div>
+                {% endcomment %}
                 <div class="form-group">
                   <label>Name</label>
                   {{user_form.name}}
@@ -34,6 +36,16 @@
                   {{user_form.phone.errors}}
                 </div>
                 <div class="form-group">
+                  <label>Email</label>
+                  {{user_form.email}}
+                  {{user_form.email.errors}}
+                </div>
+                <div class="form-group">
+                  <label>Displayname</label>
+                  {{user_form.displayname}}
+                  {{user_form.displayname.errors}}
+                </div>
+                <div class="form-group">
                   <label>City</label>
                   {{user_form.city}}
                 </div>
@@ -41,6 +53,7 @@
                   <label>Streetadddress</label>
                   {{user_form.streetaddress}}
                 </div>
+                <button type="submit" class="btn btn-default btn-block submit">Update</button>
         </div>
         <div class="col-md-8">
                 <label>Exact Location on Map</label>
@@ -48,5 +61,5 @@
     </div>
     </div>
 </div>
-<button type="submit" class="btn btn-default submit">Update</button>
+
 {% endblock content %}

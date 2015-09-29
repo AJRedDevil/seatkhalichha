@@ -448,6 +448,8 @@ class HMUserChangeForm(UserChangeForm):
             del self.fields['username']
         self.fields['name'].widget.attrs = {'class': 'form-control'}
         self.fields['phone'].widget.attrs = {'class': 'form-control'}
+        self.fields['email'].widget.attrs = {'class': 'form-control'}
+        self.fields['displayname'].widget.attrs = {'class': 'form-control'}
         self.fields['city'].widget.attrs = {'class': 'form-control'}
         self.fields['address_coordinates'].widget = GMapPointWidget(
             attrs={'map_width': 750, 'map_height': 500})
@@ -459,6 +461,22 @@ class HMUserChangeForm(UserChangeForm):
 
     profile_image = forms.ImageField(
         required=False
+    )
+
+    displayname = forms.CharField(
+        label=_("Display name"),
+        help_text=_("Your nickname here."),
+        error_messages={
+            'required': 'Please provide with a displayname !',
+            'min_length': 'The username has to be more than 6 characters !'}
+    )
+
+    email = forms.CharField(
+        label=_("Email Address"),
+        help_text=_("Enter your email address."),
+        error_messages={
+            'required': 'Please provide with an email address !',
+            'min_length': 'The username has to be more than 6 characters !'}
     )
 
     city = forms.ChoiceField(

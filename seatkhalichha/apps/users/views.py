@@ -665,6 +665,8 @@ def userSettings(request):
         phone=user.phone,
         city=user.address['city'],
         streetaddress=user.address['streetaddress'],
+        email=user.email,
+        displayname=user.displayname,
         profile_image=user.profile_image,
         address_coordinates=user.address_coordinates,
     )
@@ -686,6 +688,8 @@ def userSettings(request):
             address['city'] = user_form.cleaned_data['city']
             address['streetaddress'] = user_form.cleaned_data['streetaddress']
             userdata.address = address
+            userdata.email = user_form.cleaned_data['email']
+            userdata.displayname = user_form.cleaned_data['displayname']
             userdata.save()
             userdetails = um.getUserDetails(user.id)
             newaddress = userdetails.address
@@ -917,6 +921,8 @@ def acquireInfo(request):
             request.session['user_valid']=True
             request.session['phone']=data.get('phone')
             request.session['name']=data.get('name')
+            request.session['displayname']=data.get('displayname')
+            request.session['email']=data.get('email')
             request.session['city']=data.get('city')
             request.session['streetaddress']=data.get('streetaddress')
             request.session['address_coordinates']=data.get('address_coordinates')
