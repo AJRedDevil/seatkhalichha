@@ -12,9 +12,10 @@
 <div class="hora-job-form">
   <div class="row">
   <div class="col-md-4">
-    <form action="{% url 'social:complete' backend=backend %}" method="post" id="jobEditForm">{% csrf_token %}
+    <form action="" method="post" id="jobEditForm">{% csrf_token %}
         {{user_form.name.label_tag}} {{user_form.name}}
         {{user_form.phone.label_tag}} {{user_form.phone}}
+        {{user_form.phone.errors}}
         {{user_form.displayname.label_tag}} {{user_form.displayname}}<br>
         {{user_form.city.label_tag}} {{user_form.city}}
         {{user_form.streetaddress.label_tag}} {{user_form.streetaddress}}

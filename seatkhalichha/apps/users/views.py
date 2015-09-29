@@ -906,13 +906,15 @@ def editUserDetail(request, userref):
 
 def acquireInfo(request):
     backend=request.session['partial_pipeline']['backend']
-    userdata = dict(
-        name='',
-        phone='',
-        streetaddress='Tripureshwore',
-        city='Kathmandu',
-        profile_image='',
-        address_coordinates='',
-    )
-    user_form = userforms.HMUserChangeForm(initial=userdata)
+    
+    if request.POST:
+        user_form=userforms.HMUserChangeForm(request.POST)
+        if user_form.is_valid():
+            return redirect('social:complete', backend=backend)
+
+        if user_form.errors:
+            logger.debug("Acquire form has erorrs %s", user_form.errors)
+            return render(request, 'acquireInfo.html', locals())
+
+    user_form = userforms.HMUserChangeForm()
     return render(request, 'acquireInfo.html', locals())

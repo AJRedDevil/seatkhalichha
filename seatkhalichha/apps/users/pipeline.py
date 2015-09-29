@@ -7,7 +7,7 @@ from social.pipeline.partial import partial
 @partial
 def update_user_details(strategy, details, user=None, is_new=False, *args, **kwargs):
     backend=kwargs.get('backend')
-    if user and user.phone:
+    if (user and user.phone) or strategy.session.get('user_valid'):
         return
     elif is_new and not details.get('phone'):
         phone=strategy.request_data().get('phone')
