@@ -90,9 +90,9 @@ class CarpoolCreationForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CarpoolCreationForm, self).__init__(*args, **kwargs)
         self.fields['vehicle_type'].widget.attrs={'class' : 'form-control'}
-        self.fields['remarks'].widget.attrs={'class' : 'form-control'}
+        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': '21st Sept @ 9:30 AM'}
         self.fields['occupancy'].widget.attrs={'class' : 'form-control'}
-        self.fields['route'].widget.attrs={'class' : 'form-control'}
+        self.fields['route'].widget.attrs={'class' : 'form-control', 'placeholder': 'Budhanilkantha to Baluwatar'}
 
 
 class CarpoolEditForm(forms.ModelForm):
@@ -108,7 +108,7 @@ class CarpoolEditForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CarpoolEditForm, self).__init__(*args, **kwargs)
         self.fields['vehicle_type'].widget.attrs.update({'class' : 'form-control'})
-        self.fields['remarks'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['remarks'].widget.attrs.update({'class' : 'form-control', 'placeholder': '21st Sept @ 9:30 AM'})
         self.fields['occupancy'].widget.attrs.update({'class' : 'form-control'})
 
 
@@ -139,3 +139,4 @@ class CarpoolRequestCreateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CarpoolRequestCreateForm, self).__init__(*args, **kwargs)
+        self.fields['message'].widget.attrs.update({'class' : 'form-control', 'placeholder':'I need to be at my school. I can come to Chakrapath at 9!'})
