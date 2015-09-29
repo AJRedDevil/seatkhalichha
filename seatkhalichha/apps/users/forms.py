@@ -285,9 +285,30 @@ class UserSignupForm(forms.ModelForm):
         'mobile_phone': _("Please enter a valid mobile number!"),
     }
 
+    address_coordinates = forms.PointField(
+        required=False
+    )
+
     class Meta:
         model = UserProfile
-        fields = ['name', 'phone']
+        fields = ['name', 'phone' ,'displayname']
+
+    def __init__(self, *args, **kwargs):
+        super(UserSignupForm, self).__init__(*args, **kwargs)
+        self.fields['phone'].widget.attrs.update({'class': 'form-control'})
+        self.fields['name'].widget.attrs.update({'class': 'form-control'})
+        self.fields['displayname'].widget.attrs.update({'class': 'form-control'})
+        self.fields['password1'].widget.attrs.update({'class': 'form-control'})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control'})
+        self.fields['city'].widget.attrs.update({'class': 'form-control ip-form'})
+        self.fields['address_coordinates'].widget = GMapPointWidget(
+            attrs={'map_width': 750, 'map_height': 500})
+        self.fields['address_coordinates'].widget.attrs={'class': 'form-control'}
+        self.fields['streetaddress'].widget.attrs = {
+            'class': 'form-control',
+            'placeholder': 'Ganeshthan, Kamaladi'
+        }
+
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")

@@ -204,6 +204,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/animate.css',
             'css/webstyle.css',
+            'css/admin.sass',
         ),
         'output_filename': 'css/signin.css',
     },

@@ -2,7 +2,7 @@
 
 #All Djang Imports
 from django.conf import settings
-from django.core import serializers
+# from django.core import serializers
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
@@ -122,7 +122,7 @@ def signup(request):
             authenticate(username=userdata.phone, password=userdata.password)
             userdata.backend = 'django.contrib.auth.backends.ModelBackend'
             auth_login(request, userdata)
-            UserToken.objects.create(user=userdata)
+            # UserToken.objects.create(user=userdata)
             eventhandler = user_handler.UserEventManager()
             extrainfo = dict(
                 client_public_ip=client_public_ip,
@@ -130,11 +130,11 @@ def signup(request):
             )
             eventhandler.setevent(request.user, 1, extrainfo)
             um = user_handler.UserManager()
-            um.sendVerfText(userdata.id)
+            # um.sendVerfText(userdata.id)
             logger.debug("user created")
-            logger.debug("User Details : \n {0}".format(
-                serializers.serialize('json', [userdata, ])
-            ))
+            # logger.debug("User Details : \n {0}".format(
+            #     serializers.serialize('json', [userdata, ])
+            # ))
             return redirect('home')
         if user_form.errors:
             logger.debug("Login Form has errors, %s ", user_form.errors)
