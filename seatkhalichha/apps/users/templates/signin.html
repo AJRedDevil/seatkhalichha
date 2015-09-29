@@ -25,7 +25,7 @@
 
             
             </div>
-            <h3>Welcome to Seatkhalichha.com</h3>
+            <h2>Sign in here!</h2>
             <p>
                 
             </p>
@@ -136,27 +136,6 @@
 
 {% endblock %}
 {% block scripts %}
-  <script>
-  angular.module('validation', [])
-    .controller('Validation', ['$scope', function($scope) {
-      $scope.master = {};
-
-      $scope.update = function(user) {
-        $scope.master = angular.copy(user);
-      };
-
-      $scope.reset = function() {
-        $scope.user = angular.copy($scope.master);
-      };
-
-      $scope.isUnchanged = function(user) {
-      return angular.equals(user, $scope.master);
-    };
-
-      $scope.reset();
-    }]);
-</script>
-
 <script src={% static "js/jquery-2.1.1.js" %}></script>
     <script src={% static "js/bootstrap.min.js" %}></script>
 {% endblock scripts %}

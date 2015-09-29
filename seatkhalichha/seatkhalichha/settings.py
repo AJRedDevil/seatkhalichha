@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'pipeline',
     'apps.users',
     'apps.search',
+    'floppyforms',
     # 'apps.faq',
 )
 

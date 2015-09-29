@@ -572,8 +572,8 @@ select.form-control {
   color: #fff;
 }
 .btn-primary {
-  background-color: #1ab394;
-  border-color: #1ab394;
+  background-color: #6eaa18;
+  border-color: #6eaa18;
   color: #FFFFFF;
 }
 .btn-primary:hover,
@@ -2727,7 +2727,7 @@ a.forum-item-title:hover {
 }
 body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #2f4050;
+  background-color: #FFFFFF;
   font-size: 13px;
   color: #555459;
   overflow-x: hidden;

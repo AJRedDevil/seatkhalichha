@@ -179,7 +179,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
                 os.path.splitext(
                             self.profile_image.name.lower())[0]+'_normal.jpeg')):
             return storage.url(self.profile_image.name.split('.')[0])+'_normal.jpeg'
-        return "/static/img/logo.png"
+        return "/static/img/ppthumb.png"
 
     def create_thumbnail(self, size=400, quality=None):
         if self.profile_image != '':
