@@ -13,9 +13,9 @@
     <!-- Meta Property -->
     <meta property="og:title" content="Seatkhalicha" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://www.thehomerepairapp.com" />
-    <meta property="og:image" content="http://www.thehomerepairapp.com/static/img/logo-fb-og.png" />
-    <link rel="image_src" type="image/jpeg" href="http://www.thehomerepairapp.com/static/img/logo-fb-og.png" />
+    <meta property="og:url" content="http://www.seatkhalicha.com" />
+    <meta property="og:image" content="http://www.seatkhalicha.com/static/img/carpool.png" />
+    <link rel="image_src" type="image/jpeg" href="http://www.seatkhalicha.com/static/img/carpool.png" />
     <!--Source sans pro font css-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     {% stylesheet 'web_yellow' %}
@@ -58,8 +58,47 @@
     </div>
 
         <!-- eo brand -->
-{% block content %}
-{% endblock content %}
+        <!-- video -->
+        <div class="mobile">
+            <div class="contents">
+                <div class="links">
+                    <ul>
+                        <li> <a href="{% url 'signin' %}">Sign In</a> </li>
+                        <li> <a href="{% url 'signup' %}">Sign Up</a> </li>
+                        {% comment %}
+                            <li> <a href="{% url 'faq' %}">FAQs</a> </li>                   
+                        {% endcomment %}
+                        <!-- <li> <a href="FAQ">Social</a> </li> -->
+                    </ul>
+
+                </div>
+                <footer>
+                    <div class="btn">
+                        <div class="register">
+                            Got a vacant seat? <br>
+                            Share it and help the needy!<br>    
+                        </div>
+
+                    </div><br>
+                    <p>Amidst all this fuel crisis and chaos, this is a small effort to help you get a ride. A friend in need is a friend indeed!</p><br><br>
+                    <div class='sms'>**By continuing you agree to the terms and conditions!</div>
+                    {% comment %}
+                        <div class='social'>
+                            <ul>
+                                <li><a href='http://facebook.com/homerepairapp' target='_blank'> <img src={% static 'img/fb.png' %}></a></li>
+                                <li><a href='http://twitter.com/homerepairapp' target='_blank'> <img src={% static 'img/tw.png' %}></a></li>
+
+                            </ul>
+                        </div>
+                    {% endcomment %}
+                </footer>
+            </div>
+
+            <!-- eo content -->
+
+
+        </div>
+        <!--Float right End-->
 </body>
 <script type="text/javascript" src={% static 'js/web_yellow.js' %}></script>
 <script type="text/javascript" src={% static 'js/popup.js' %}></script>

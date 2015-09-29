@@ -8,4 +8,4 @@ def index(request):
     user = request.user
     if user.is_authenticated():
         return redirect('home')
-    return render(request, 'index.html', locals())
+    return render(request, 'landingpage.html', locals())
