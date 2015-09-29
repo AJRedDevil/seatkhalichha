@@ -910,6 +910,13 @@ def acquireInfo(request):
     if request.POST:
         user_form=userforms.HMUserChangeForm(request.POST)
         if user_form.is_valid():
+            data=request.POST
+            request.session['user_valid']=True
+            request.session['phone']=data.get('phone')
+            request.session['name']=data.get('name')
+            request.session['city']=data.get('city')
+            request.session['streetaddress']=data.get('streetaddress')
+            request.session['address_coordinates']=data.get('address_coordinates')
             return redirect('social:complete', backend=backend)
 
         if user_form.errors:
