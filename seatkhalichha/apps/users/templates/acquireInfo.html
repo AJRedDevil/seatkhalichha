@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% load pipeline %}
+{% load staticfiles floppyforms%}
+{% block localhead %}  
+{% stylesheet 'signin' %}
+{{ user_form.media }}
+{% endblock localhead %}
+{% block content %} 
+
+<div class='page-container container list-table'>
+<h1><span class='jobId'>Please provide your details below</span></h1>
+<div class="hora-job-form">
+  <div class="row">
+  <div class="col-md-4">
+    <form action="{% url 'social:complete' backend=backend %}" method="post" id="jobEditForm">{% csrf_token %}
+        {{user_form.name.label_tag}} {{user_form.name}}
+        {{user_form.phone.label_tag}} {{user_form.phone}}
+        {{user_form.displayname.label_tag}} {{user_form.displayname}}<br>
+        {{user_form.city.label_tag}} {{user_form.city}}
+        {{user_form.streetaddress.label_tag}} {{user_form.streetaddress}}
+        <br><button type="submit" class="btn btn-block btn-default submit">Update</button><br>
+    </div>
+    <div class="col-md-8">
+                <label>Exact Location on Map</label>
+               {% widget user_form.address_coordinates %}
+    </div>
+  </div>
+
+</div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src={% static "js/jquery-2.1.1.js" %}></script>
+    <script src={% static "js/bootstrap.min.js" %}></script>
+{% endblock scripts %}

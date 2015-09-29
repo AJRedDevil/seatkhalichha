@@ -898,3 +898,16 @@ def editUserDetail(request, userref):
 
     user_form = userforms.HMUserChangeForm(initial=customerdata)
     return render(request, 'userdetails.html', locals())
+
+def acquireInfo(request):
+    backend=request.session['partial_pipeline']['backend']
+    userdata = dict(
+        name='',
+        phone='',
+        streetaddress='Tripureshwore',
+        city='Kathmandu',
+        profile_image='',
+        address_coordinates='',
+    )
+    user_form = userforms.HMUserChangeForm(initial=userdata)
+    return render(request, 'acquireInfo.html', locals())

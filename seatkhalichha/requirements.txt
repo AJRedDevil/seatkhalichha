@@ -1,5 +1,6 @@
 Django==1.6
 Pillow==2.6.1
+PyJWT==1.4.0
 South==1.0.1
 dj-database-url==0.3.0
 dj-static==0.0.6
@@ -19,10 +20,14 @@ gunicorn==19.1.1
 html5lib==0.9999999
 jsonfield==1.0.0
 libsass==0.8.0
+oauthlib==1.0.3
 phonenumbers==7.0.4
 psycopg2==2.5.2
+python-openid==2.2.5
+python-social-auth==0.2.13
 pytz==2014.10
 requests==2.4.3
+requests-oauthlib==0.5.0
 simplejson==3.6.5
 six==1.8.0
 static3==0.5.1

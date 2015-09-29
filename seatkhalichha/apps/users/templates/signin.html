@@ -35,6 +35,8 @@
                   </p>
           </div>
           <button type="submit" class="ibox-tools btn btn-primary block full-width m-b" ng-disabled="form.$invalid || isUnchanged(user)">Login</button>
+          <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Twitter</a>
+          <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Facebook</a>
 
         
           <p class="text-muted text-center"><small>Do not have an account?</small></p>

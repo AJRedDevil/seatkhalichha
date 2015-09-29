@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'apps.search',
     'floppyforms',
     # 'apps.faq',
+    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -47,17 +48,28 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
 )
 
 # AUTH BACKEND DEFINITIONS
 AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    # 'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
 
 # TEMPLATE CONTEXT DEFINITIONS
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
     'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
     # 'django.contrib.auth.context_processors.auth',
 )
 # TEMPLATE PATH CONFIGURATION
@@ -170,6 +182,23 @@ GOOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
 # Phone number setting
 PHONENUMBER_DEFAULT_REGION = 'NP'
 
+# Social Auth Key
+SOCIAL_AUTH_FACEBOOK_KEY=os.environ['SOCIAL_AUTH_FACEBOOK_KEY']
+SOCIAL_AUTH_FACEBOOK_SECRET=os.environ['SOCIAL_AUTH_FACEBOOK_SECRET']
+SOCIAL_AUTH_TWITTER_KEY=os.environ['SOCIAL_AUTH_TWITTER_KEY']
+SOCIAL_AUTH_TWITTER_SECRET=os.environ['SOCIAL_AUTH_TWITTER_SECRET']
+
+# Socail Auth Scope
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'locale': 'ru_RU',
+  'fields': 'name, email'
+}
+
+# Social Auth URL
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/signin/'
+
+
 # LOCAL CONFIG IMPORT, IMPORTS ALL CONFIG FROM local_setting.py,
 # required only for a dev env
 
@@ -216,3 +245,18 @@ PIPELINE_CSS = {
         'output_filename': 'css/admin.css',
     },
 }
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.mail.mail_validation',
+    'apps.users.pipeline.update_user_details',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.debug.debug',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+)
