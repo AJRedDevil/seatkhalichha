@@ -47,3 +47,14 @@
 
     </div>
 {% endblock content %}
+{% block scripts %}
+    
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable( {
+          responsive: true,
+          "bFilter": false
+      } );
+    } );
+    </script>
+{% endblock %}

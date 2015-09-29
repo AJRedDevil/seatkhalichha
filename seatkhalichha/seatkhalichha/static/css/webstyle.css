@@ -1,0 +1,13 @@
+.btn {
+  border-radius: 3px;
+}
+.btn-primary {
+  background-color: #6eaa18;
+  border-color: #6eaa18;
+  color: #FFFFFF;
+}
+.btn-default {
+  background-color: #6eaa18;
+  border-color: #6eaa18;
+  color: #FFFFFF;
+}
