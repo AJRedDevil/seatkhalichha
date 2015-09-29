@@ -158,6 +158,11 @@ LOGGING = {
             'propagate': True,
             'level': 'WARN',
         },
+        'apps.users': {
+            'handlers': ['file'],
+            'propagate': True,
+            'level': 'WARN',
+        },
     }
 }
 

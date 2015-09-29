@@ -101,19 +101,19 @@ def signup(request):
         return redirect('home')
 
     if request.method == "POST":
-        request_dict = request.POST.copy()
-        phone = request_dict.get('phone')
-        if phone == '':
-            return redirect('signup')
-        try:
-            phone = intlphone.from_string(
-                request_dict.get('phone'),
-                region='NP')
-        except Exception as e:
-            return redirect('signup')
-
         user_form = userforms.UserSignupForm(request.POST)
+
         if user_form.is_valid():
+            request_dict = request.POST.copy()
+            phone = request_dict.get('phone')
+            if phone == '':
+                return redirect('signup')
+            try:
+                phone = intlphone.from_string(
+                    request_dict.get('phone'),
+                    region='NP')
+            except Exception as e:
+                return redirect('signup')
             userdata = user_form.save(commit=False)
             userdata.address = dict(
                 city=user_form.cleaned_data['city'],
@@ -136,9 +136,14 @@ def signup(request):
             #     serializers.serialize('json', [userdata, ])
             # ))
             return redirect('home')
+
         if user_form.errors:
-            logger.debug("Login Form has errors, %s ", user_form.errors)
+            logger.warn("Login Form has errors, %s ", user_form.errors)
             return render(request, 'signup.html', locals())
+
+    # if request.method == "GET":
+    #     user_form = userforms.UserSignupForm()
+    #     return render(request, 'signup.html', locals())
 
     user_form = userforms.UserSignupForm()
     return render(request, 'signup.html', locals())

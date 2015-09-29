@@ -114,13 +114,19 @@ class UserCreationForm(forms.ModelForm):
     A form that creates a user, from the given data,
     this runs when the user uses the signup form
     """
-    phone = PhoneNumberField()
+    phone = PhoneNumberField(
+        label=_("Phone"),
+        help_text=_("Enter a valid mobile number."),
+        error_messages={
+            'required': 'Please provide with a mobile number !',
+            'min_length': 'The username has to be more than 6 characters !',
+        })
     displayname = forms.CharField(
         label=_("Display name"),
         help_text=_("Enter a name that'd be visible as your handle."),
         error_messages={
-            'required': 'Please provide with a password confirmation !',
-            'min_length': 'The password has to be more than 6 characters !',
+            'required': 'Please provide with a username !',
+            'min_length': 'The username has to be more than 6 characters !',
         })
     password1 = forms.CharField(
         label=_("Password"),
@@ -241,20 +247,26 @@ class UserSignupForm(forms.ModelForm):
     """
     A form for user signups
     """
-    phone = PhoneNumberField()
+    phone = PhoneNumberField(
+        label=_("Phone"),
+        help_text=_("Enter a valid mobile number."),
+        error_messages={
+            'required': 'Please provide with a mobile number !',
+            'min_length': 'The username has to be more than 6 characters !',
+        })
     displayname = forms.CharField(
         label=_("Display name"),
         help_text=_("Enter a name that'd be visible as your handle."),
         error_messages={
-            'required': 'Please provide with a password confirmation !',
-            'min_length': 'The password has to be more than 6 characters !',
+            'required': 'Please provide with a username !',
+            'min_length': 'The username has to be more than 6 characters !',
         })
     password1 = forms.CharField(
         label=_("Password"),
         widget=forms.PasswordInput,
         min_length=6,
         error_messages={
-            'required': 'Please provide with a password !',
+            'required': 'Password required !',
             'min_length': 'The password has to be more than 6 characters !',
         })
     password2 = forms.CharField(
@@ -262,7 +274,7 @@ class UserSignupForm(forms.ModelForm):
         widget=forms.PasswordInput, min_length=6,
         help_text=_("Enter the same password as above, for verification."),
         error_messages={
-            'required': 'Please provide with a password confirmation !',
+            'required': 'Password confirmation required !',
             'min_length': 'The password has to be more than 6 characters !',
         })
     city = forms.ChoiceField(
