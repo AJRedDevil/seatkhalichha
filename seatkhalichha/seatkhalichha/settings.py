@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'pipeline',
     'apps.users',
     'apps.search',
-    'apps.faq',
+    # 'apps.faq',
 )
 
 MIDDLEWARE_CLASSES = (
