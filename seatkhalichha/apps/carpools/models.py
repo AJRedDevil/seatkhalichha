@@ -64,7 +64,7 @@ class Carpools(models.Model):
     # jobs that are deleted or are to be purged would have this flag
     # set as true, no data would be permanently removed
     ishidden = models.BooleanField(_('ishidden'), default=False)
-    remarks = models.TextField(_('remarks'), blank=False)
+    remarks = models.TextField(_('remarks'), blank=True)
     # location / coordinates of the exact jobsite
     route = models.TextField(_('route'), blank=False)
     start_datetime= models.DateTimeField(

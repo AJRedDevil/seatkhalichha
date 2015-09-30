@@ -94,7 +94,7 @@ class CarpoolCreationForm(forms.ModelForm):
         self.fields['start_datetime'].input_formats=['%Y/%m/%d %H:%M']
         self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00'}
         self.fields['end_datetime'].input_formats=['%Y/%m/%d %H:%M']
-        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Smoking not allowed!'}
+        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Anything you want to say to the rider. '}
         self.fields['occupancy'].widget.attrs={'class' : 'form-control'}
         self.fields['route'].widget.attrs={'class' : 'form-control', 'placeholder': 'Budhanilkantha to Baluwatar'}
 
@@ -112,7 +112,7 @@ class CarpoolEditForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CarpoolEditForm, self).__init__(*args, **kwargs)
         self.fields['vehicle_type'].widget.attrs.update({'class' : 'form-control'})
-        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Smoking not allowed!'}
+        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Anything you want to say to the rider. '}
         self.fields['occupancy'].widget.attrs.update({'class' : 'form-control'})
         self.fields['start_datetime'].widget.attrs={'class' : 'form-control dateTimePicker'}
         self.fields['start_datetime'].input_formats=['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S', '%Y/%m/%d %H:%M']
@@ -137,7 +137,7 @@ class CarpoolViewForm(forms.ModelForm):
         self.fields['start_datetime'].input_formats=['%Y/%m/%d %H:%M']
         self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00', 'readonly': 'readonly'}
         self.fields['end_datetime'].input_formats=['%Y/%m/%d %H:%M']
-        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Smoking not allowed!', 'readonly': 'readonly'}
+        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Anything you want to say to the rider. ', 'readonly': 'readonly'}
         self.fields['occupancy'].widget.attrs={'class' : 'form-control', 'readonly': 'readonly'}
 
 class CarpoolRequestCreateForm(forms.ModelForm):
