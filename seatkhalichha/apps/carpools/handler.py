@@ -45,6 +45,29 @@ class CarpoolManager(object):
         # )
         return carpools
 
+    def getRecentCarpools(self):
+        # if user.user_type == 0:
+        #     jobs = Jobs.objects.filter()
+        # ## If it's a handymen, only show requests which they were assigned to
+        # elif user.user_type == 1:
+        #     alljobs = Jobs.objects.exclude(handyman=None)
+        #     # get the jobs where the handyman is listed
+        #     # as the one chosen for the particular work
+        #     jobs = [x for x in alljobs if user in x.handyman.all()]
+        # ## If it's a customer only show requests that they created
+        # elif user.user_type == 2:
+        #     jobs=[]
+        #     subscribers=Subscriber.objects.filter(primary_contact_person=user)
+        #     for subscriber in subscribers:
+        #         jobs.extend(Jobs.objects.filter(customer_id=subscriber.id))
+        # else:
+        #     jobs = []
+        carpools = Carpools.objects.filter(ishidden=False).order_by('-id')[:20]
+        # logger.debug("Carpool Details : \n {0}".format(
+        #     serializers.serialize('json', carpools))
+        # )
+        return carpools
+
     def getCarpoolsByRoute(self, route):
         carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route) | Carpools.objects.filter(ishidden=False, route__contains=route)
         # logger.debug("Carpool Details : \n {0}".format(

@@ -1,6 +1,7 @@
 {% extends "admin/base.html" %}
 {% load pipeline %}
 {% load staticfiles %}
+{% load urlize_target_blank %}
 {% block localhead %}
 {% stylesheet 'home' %}
 {% endblock localhead %}
@@ -37,7 +38,66 @@
     <br><br>
     </div>
 
+    <br><br><br><br><br>
+    
+    <h1 class="banner-title">Recently shared carpools</h1>
 
+    <div class="hora-table">
+        
+    <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Vehicle</th>
+                    <th>Route</th>
+                    <th>From</th>
+                    <th>Till</th>
+                    <th>Seats</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+     
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Vehicle</th>
+                    <th>Route</th>
+                    <th>From</th>
+                    <th>Till</th>
+                    <th>Seats</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+     
+            <tbody>
+
+            {% for carpool in carpools %}
+                <tr>
+                    <td>{{carpool.id}}</td>
+                    <td>{{carpool.get_vehicle_type_display}}</td>
+                    <td>{{carpool.route}}</td>
+                    <td>{{carpool.start_datetime}}</td>
+                    <td>{{carpool.end_datetime}}</td>
+                    <td>{{carpool.occupancy}}</td>
+                    {% if 'http://' in carpool.remarks %}
+                            <td>{{carpool.remarks | urlize_target_blank }}</td>
+                    {% elif 'https://' in carpool.remarks %}
+                        <td>{{carpool.remarks | urlize_target_blank}}</td>
+                    {% else %}
+                    <td>{{carpool.remarks}}</td>
+                    {% endif %}
+                    <td>
+                    <a href="{% url 'viewCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Details</button></a>
+                    </td>
+                </tr>                
+            {% endfor %}                
+            </tbody>
+        </table>
+
+    </div>
+    <!-- eo hora-table -->
     </div>
 </div>
 
