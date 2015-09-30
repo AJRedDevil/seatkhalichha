@@ -12,8 +12,7 @@
                     <th>ID</th>
                     <th>Vehicle</th>
                     <th>Route</th>
-                    <th>From</th>
-                    <th>Till</th>
+                    <th>Valid Till</th>
                     <th>Seats</th>
                     <th>Remarks</th>
                     <th>Action</th>
@@ -25,7 +24,6 @@
                     <th>ID</th>
                     <th>Vehicle</th>
                     <th>Route</th>
-                    <th>Valid From</th>
                     <th>Valid Till</th>
                     <th>Seats</th>
                     <th>Remarks</th>
@@ -40,7 +38,6 @@
                     <td>{{carpool.id}}</td>
                     <td>{{carpool.get_vehicle_type_display}}</td>
                     <td>{{carpool.route}}</td>
-                    <td>{{carpool.start_datetime}}</td>
                     <td>{{carpool.end_datetime}}</td>
                     <td>{{carpool.occupancy}}</td>
                     {% if 'http://' in carpool.remarks %}
@@ -65,13 +62,17 @@
 {% endblock content %}
 {% block scripts %}
     
-    <script>
-      $(document).ready(function() {
-        $('#example').DataTable( {
-          responsive: true,
-          "bFilter": false,
-          "order": [[ 0, "desc" ]]
-      } );
-    } );
-    </script>
+    
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable( {
+      responsive: true,
+      "bFilter": false,
+      "order": [[ 0, "desc" ]],
+      "columnDefs": [
+        { "width": "20%", "targets": 3 },
+      ]
+  } );
+} );
+</script>
 {% endblock %}

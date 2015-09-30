@@ -18,12 +18,14 @@
              {{carpool_form.end_datetime.label_tag}} {{carpool_form.end_datetime}}
              {{carpool_form.occupancy.label_tag}} {{carpool_form.occupancy}}
              {{carpool_form.remarks.label_tag}} {{carpool_form.remarks}}
+             <br><div class="fb-share-button" data-href="http://www.seatkhalicha.com{{request.get_full_path}}" data-layout="box_count"></div>
        <br><a class="btn btn-block btn-default submit" href="{% url 'requestCarpool' carpool_id=carpool.carpoolref %}">Request Carpool</a>
      </div>
    </form>
    <br>
    <div class="col-md-6">
      <div class="fb-comments" data-href="http://www.seatkhalicha.com{{request.get_full_path}}" data-numposts="10" width="100%"></div>
+
    </div>
  </div>
 </div>
