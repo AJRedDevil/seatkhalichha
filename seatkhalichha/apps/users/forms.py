@@ -318,7 +318,7 @@ class UserSignupForm(forms.ModelForm):
         super(UserSignupForm, self).__init__(*args, **kwargs)
         self.fields['phone'].widget.attrs.update({'class': 'form-control'})
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
-        # self.fields['displayname'].widget.attrs.update({'class': 'form-control'})
+        self.fields['email'].widget.attrs.update({'class': 'form-control'})
         self.fields['password1'].widget.attrs.update({'class': 'form-control'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control'})
         self.fields['city'].widget.attrs.update({'class': 'form-control ip-form'})

@@ -1,4 +1,5 @@
 {% extends "admin/base.html" %}
+{% load urlize_target_blank %}
 {% block content %}
     <div class='page-container container landing-table'>
         <h1>Recent Carpools</h1>
@@ -39,7 +40,13 @@
                     <td>{{carpool.route}}</td>
                     <td>{{carpool.get_status_display}}</td>
                     <td>{{carpool.occupancy}}</td>
+                    {% if 'http://' in carpool.remarks %}
+                            <td>{{carpool.remarks | urlize_target_blank }}</td>
+                    {% elif 'https://' in carpool.remarks %}
+                        <td>{{carpool.remarks | urlize_target_blank}}</td>
+                    {% else %}
                     <td>{{carpool.remarks}}</td>
+                    {% endif %}
                     <td>
                         <a href="{% url 'viewCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Details</button></a>
                     </td>
