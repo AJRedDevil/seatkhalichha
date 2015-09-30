@@ -34,31 +34,33 @@ def createCarpool(request):
             return render(request, 'create_carpool.html', locals())
 
 
-@login_required
 def viewCarpool(request, carpool_id):
     user = request.user
     cm = CarpoolManager()
     carpool = cm.getCarpoolDetails(carpool_id)
-    if carpool.driver != user:
-        carpool_form = CarpoolViewForm(instance=carpool)
-        return render(request, 'carpool_details_rider.html', locals())
-    carpool_form = CarpoolEditForm(instance=carpool)
-    if request.method == "POST":
-        if carpool.driver == user:
-            logger.debug(request.POST)
-            carpool_form = CarpoolEditForm(request.POST, instance=carpool)
-            if carpool_form.is_valid():
-                carpool_form.save()
-                return redirect('listAllCarpools')
-        return redirect('listAllCarpools')
+    carpool_form = CarpoolViewForm(instance=carpool)
+    if user.is_authenticated():
+        if carpool.driver != user:
+            return render(request, 'carpool_details_rider.html', locals())
+        carpool_form = CarpoolEditForm(instance=carpool)
+        if request.method == "POST":
+            if not user.is_authenticated():
+                return redirect('index')
+            if carpool.driver == user:
+                logger.debug(request.POST)
+                carpool_form = CarpoolEditForm(request.POST, instance=carpool)
+                if carpool_form.is_valid():
+                    carpool_form.save()
+                    return redirect('listAllCarpools')
+            return redirect('listAllCarpools')
 
-        if carpool_form.errors:
-            logger.debug("Form has errors, %s ", carpool_form.errors)
-            return render(request, 'carpool_details.html', locals())
+            if carpool_form.errors:
+                logger.debug("Form has errors, %s ", carpool_form.errors)
+                return render(request, 'carpool_details.html', locals())
 
         return render(request, 'carpool_details.html', locals())
 
-    return render(request, 'carpool_details.html', locals())
+    return render(request, 'carpool_details_rider.html', locals())
 
 
 # @login_required

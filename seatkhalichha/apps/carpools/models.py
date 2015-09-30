@@ -60,7 +60,7 @@ class Carpools(models.Model):
         max_length=1,
         choices=VEHICLE_TYPE,
         default='0',)
-    occupancy = models.IntegerField(_('occupancy'), max_length=10, default=1)
+    occupancy = models.IntegerField(_('Seats'), max_length=10, default=1)
     # jobs that are deleted or are to be purged would have this flag
     # set as true, no data would be permanently removed
     ishidden = models.BooleanField(_('ishidden'), default=False)

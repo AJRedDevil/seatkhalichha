@@ -14,7 +14,7 @@
                     <th>Route</th>
                     <th>From</th>
                     <th>Till</th>
-                    <th>Occupancy</th>
+                    <th>Seats</th>
                     <th>Remarks</th>
                     <th>Action</th>
                 </tr>
@@ -27,7 +27,7 @@
                     <th>Route</th>
                     <th>Valid From</th>
                     <th>Valid Till</th>
-                    <th>Occupancy</th>
+                    <th>Seats</th>
                     <th>Remarks</th>
                     <th>Action</th>
                 </tr>
@@ -42,7 +42,7 @@
                     <td>{{carpool.route}}</td>
                     <td>{{carpool.start_datetime}}</td>
                     <td>{{carpool.end_datetime}}</td>
-                    <td>{{carpool.occupancy}}</td>
+                    <td>{{carpool.Seats}}</td>
                     {% if 'http://' in carpool.remarks %}
                             <td>{{carpool.remarks | urlize_target_blank }}</td>
                     {% elif 'https://' in carpool.remarks %}
