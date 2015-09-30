@@ -68,7 +68,8 @@ def listAllCarpools(request):
     ##Acquire all the current open jobs related to the user
     from apps.carpools.handler import CarpoolManager
     cm = CarpoolManager()
-    carpools = [x for x in cm.getAllCarpools() if x.driver != user]
+    # carpools = [x for x in cm.getAllCarpools() if x.driver != user]
+    carpools = cm.getAllCarpools()
     return render(request, 'list_carpools.html', locals())
 
 
