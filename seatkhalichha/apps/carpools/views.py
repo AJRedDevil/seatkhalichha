@@ -61,7 +61,7 @@ def viewCarpool(request, carpool_id):
     return render(request, 'carpool_details.html', locals())
 
 
-@login_required
+# @login_required
 def listAllCarpools(request):
     """lists all available carpools"""
     user = request.user

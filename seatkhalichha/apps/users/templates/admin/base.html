@@ -79,8 +79,8 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-        {% if user.is_authenticated %}
+        
+        
         {% comment %}
           <form action={% url 'carpoolSearchDetail' %} method='POST' class="navbar-form navbar-left hora-nav-search" role="search">{% csrf_token %}
               <div class="form-group">
@@ -111,9 +111,10 @@
             </li>
             {% endif %}
             {% endcomment %}
-            <li class="link"><a href="{% url 'about' %}">About Seatkhalichha</a></li>
-            <li class="link"><a href="{% url 'home' %}">Home</a></li>
+            <li class="link"><a href="{% url 'about' %}">About US</a></li>
+            <li class="link"><a href="{% url 'home' %}">My Account</a></li>
             <li class="link"><a href="{% url 'createCarpool' %}">Share my ride!</a></li>
+            {% if user.is_authenticated %}
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{user.name|default:user.phone}}<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -122,8 +123,9 @@
                 <li><a href="{% url 'changePassword' %}">Change Password</a></li>
               </ul>
             </li>
+            {% endif %}
           </ul>
-        {% endif %}
+        
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

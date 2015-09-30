@@ -8,7 +8,7 @@ def index(request):
     user = request.user
     if user.is_authenticated():
         return redirect('home')
-    return render(request, 'landingpage.html', locals())
+    return render(request, 'homepage.html', locals())
 
 
 def about(request):

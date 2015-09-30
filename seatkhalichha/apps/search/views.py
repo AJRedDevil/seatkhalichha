@@ -13,7 +13,6 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 
 
-@login_required
 def carpoolSearch(request, route=None):
     """
     Searches a carpool for the matching pattern and
