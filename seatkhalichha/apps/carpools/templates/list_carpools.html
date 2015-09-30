@@ -12,7 +12,8 @@
                     <th>ID</th>
                     <th>Vehicle Type</th>
                     <th>Route</th>
-                    <th>Status</th>
+                    <th>StartDateTime</th>
+                    <th>EndDateTime</th>
                     <th>Occupancy</th>
                     <th>Remarks</th>
                     <th>Action</th>
@@ -24,7 +25,8 @@
                     <th>ID</th>
                     <th>Vehicle Type</th>
                     <th>Route</th>
-                    <th>Status</th>
+                    <th>StartDateTime</th>
+                    <th>EndDateTime</th>
                     <th>Occupancy</th>
                     <th>Remarks</th>
                     <th>Action</th>
@@ -38,7 +40,8 @@
                     <td>{{carpool.id}}</td>
                     <td>{{carpool.get_vehicle_type_display}}</td>
                     <td>{{carpool.route}}</td>
-                    <td>{{carpool.get_status_display}}</td>
+                    <td>{{carpool.start_datetime}}</td>
+                    <td>{{carpool.end_datetime}}</td>
                     <td>{{carpool.occupancy}}</td>
                     {% if 'http://' in carpool.remarks %}
                             <td>{{carpool.remarks | urlize_target_blank }}</td>

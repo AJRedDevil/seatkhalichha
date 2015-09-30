@@ -67,6 +67,14 @@ class Carpools(models.Model):
     remarks = models.TextField(_('remarks'), blank=False)
     # location / coordinates of the exact jobsite
     route = models.TextField(_('route'), blank=False)
+    start_datetime= models.DateTimeField(
+        _('start_datetime'),
+        default=timezone.now
+        )
+    end_datetime= models.DateTimeField(
+        _('end_datetime'),
+        default='',
+        )
 
     # objects = models.GeoManager()
 

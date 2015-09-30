@@ -1,6 +1,9 @@
 {% extends "admin/base.html" %}
 {% load staticfiles floppyforms %}
 {% block localhead %}
+    <link rel="stylesheet" href={% static "css/jquery.datetimepicker.css" %}>
+    <script src={% static "js/jquery-2.1.1.js" %}></script>
+    <script src={% static "js/jquery.datetimepicker.js" %}></script>
 {% endblock localhead %}
 {% block content %}
 <div class='page-container container list-table'>
@@ -13,6 +16,8 @@
         <div class='row'>
          <form action="" method="post" id="jobEditForm">{% csrf_token %}
              {{carpool_form.vehicle_type.label_tag}} {{carpool_form.vehicle_type}}
+             {{carpool_form.start_datetime.label_tag}} {{carpool_form.start_datetime}}
+             {{carpool_form.end_datetime.label_tag}} {{carpool_form.end_datetime}}
              {{carpool_form.occupancy.label_tag}} {{carpool_form.occupancy}}
              {{carpool_form.remarks.label_tag}} {{carpool_form.remarks}}
              <br><button type="submit" class="btn btn-block btn-default submit">Update</button><br>
@@ -23,4 +28,7 @@
 </div>
 {% endblock content %}
 {% block scripts %}
+  <script type="text/javascript">
+        jQuery('.dateTimePicker').datetimepicker();
+    </script>
 {% endblock scripts %}
