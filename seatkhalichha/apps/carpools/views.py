@@ -92,7 +92,6 @@ def requestCarpool(request, carpool_id):
     if request.method == "POST":
         carpoolreq_form = CarpoolRequestCreateForm(request.POST)
         if carpoolreq_form.is_valid():
-            logging.warn("all good")
             carpoolreq_data = carpoolreq_form.save(commit=False)
             carpoolreq_data.carpool = carpool
             carpoolreq_data.rider = user

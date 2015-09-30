@@ -13,10 +13,12 @@
   <div class='row'>
     <div class="col-md-6">
      <form action="" method="post" id="jobEditForm">{% csrf_token %}
-       {{carpool_form.vehicle_type.label_tag}} {{carpool_form.vehicle_type}}
-       {{carpool_form.occupancy.label_tag}} {{carpool_form.occupancy}}
-       {{carpool_form.remarks.label_tag}} {{carpool_form.remarks}}
-       <a class="btn btn-block btn-default submit" href="{% url 'requestCarpool' carpool_id=carpool.carpoolref %}">Request Carpool</a>
+             {{carpool_form.vehicle_type.label_tag}} {{carpool_form.vehicle_type}}
+             {{carpool_form.start_datetime.label_tag}} {{carpool_form.start_datetime}}
+             {{carpool_form.end_datetime.label_tag}} {{carpool_form.end_datetime}}
+             {{carpool_form.occupancy.label_tag}} {{carpool_form.occupancy}}
+             {{carpool_form.remarks.label_tag}} {{carpool_form.remarks}}
+       <br><a class="btn btn-block btn-default submit" href="{% url 'requestCarpool' carpool_id=carpool.carpoolref %}">Request Carpool</a>
      </div>
    </form>
    <br>

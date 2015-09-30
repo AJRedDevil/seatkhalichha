@@ -85,12 +85,16 @@ class CarpoolCreationForm(forms.ModelForm):
 
     class Meta:
         model = Carpools
-        fields = ['vehicle_type', 'remarks', 'route', 'occupancy']
+        fields = ['vehicle_type', 'start_datetime', 'end_datetime', 'remarks', 'route', 'occupancy', ]
 
     def __init__(self, *args, **kwargs):
         super(CarpoolCreationForm, self).__init__(*args, **kwargs)
         self.fields['vehicle_type'].widget.attrs={'class' : 'form-control'}
-        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': '21st Sept @ 9:30 AM'}
+        self.fields['start_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', }
+        self.fields['start_datetime'].input_formats=['%Y/%m/%d %H:%M']
+        self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00'}
+        self.fields['end_datetime'].input_formats=['%Y/%m/%d %H:%M']
+        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Smoking not allowed OR only ladies passengers!'}
         self.fields['occupancy'].widget.attrs={'class' : 'form-control'}
         self.fields['route'].widget.attrs={'class' : 'form-control', 'placeholder': 'Budhanilkantha to Baluwatar'}
 
@@ -102,14 +106,18 @@ class CarpoolEditForm(forms.ModelForm):
 
     class Meta:
         model = Carpools
-        fields = ['vehicle_type', 'remarks', 'occupancy']
+        fields = ['vehicle_type', 'remarks', 'occupancy', 'start_datetime', 'end_datetime']
 
 
     def __init__(self, *args, **kwargs):
         super(CarpoolEditForm, self).__init__(*args, **kwargs)
         self.fields['vehicle_type'].widget.attrs.update({'class' : 'form-control'})
-        self.fields['remarks'].widget.attrs.update({'class' : 'form-control', 'placeholder': '21st Sept @ 9:30 AM'})
+        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Smoking not allowed OR only ladies passengers!'}
         self.fields['occupancy'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['start_datetime'].widget.attrs={'class' : 'form-control dateTimePicker'}
+        self.fields['start_datetime'].input_formats=['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S', '%Y/%m/%d %H:%M']
+        self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00'}
+        self.fields['end_datetime'].input_formats=['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S', '%Y/%m/%d %H:%M']
 
 
 class CarpoolViewForm(forms.ModelForm):
@@ -119,14 +127,18 @@ class CarpoolViewForm(forms.ModelForm):
 
     class Meta:
         model = Carpools
-        fields = ['vehicle_type', 'remarks', 'occupancy']
+        fields = ['vehicle_type', 'remarks', 'occupancy', 'start_datetime', 'end_datetime']
 
 
     def __init__(self, *args, **kwargs):
         super(CarpoolViewForm, self).__init__(*args, **kwargs)
-        self.fields['vehicle_type'].widget.attrs.update({'class' : 'form-control', 'readonly':'readonly'})
-        self.fields['remarks'].widget.attrs.update({'class' : 'form-control', 'readonly':'readonly'})
-        self.fields['occupancy'].widget.attrs.update({'class' : 'form-control', 'readonly':'readonly'})
+        self.fields['vehicle_type'].widget.attrs={'class' : 'form-control'}
+        self.fields['start_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', }
+        self.fields['start_datetime'].input_formats=['%Y/%m/%d %H:%M']
+        self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00'}
+        self.fields['end_datetime'].input_formats=['%Y/%m/%d %H:%M']
+        self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Smoking not allowed OR only ladies passengers!'}
+        self.fields['occupancy'].widget.attrs={'class' : 'form-control'}
 
 class CarpoolRequestCreateForm(forms.ModelForm):
     """
