@@ -6,11 +6,12 @@
 <div class='page-container container list-table'>
     <h1><a href={% url 'home' %} class='link main-back'><</a></h1>
 
-    <h1>Job <span class='jobId'>CARPOOL DETAILS</span></h1>
+    <h1><span class='jobId'>CARPOOL DETAILS</span></h1>
 </span>
 </h1>
 <div class="hora-job-form">
     <div class='row'>
+    <div class="col-md-6">
        <form action="" method="post" id="jobEditForm">{% csrf_token %}
            {{carpool_form.vehicle_type.label_tag}} {{carpool_form.vehicle_type}}
            {{carpool_form.occupancy.label_tag}} {{carpool_form.occupancy}}
@@ -18,9 +19,11 @@
            <br><button type="submit" class="btn btn-block btn-default submit">Update</button><br>
        </div>
    </form>
-   <div class="fb-comments" data-href="http://www.seatkhalicha.com{{request.get_full_path}}" data-numposts="10" width="100%"></div>
+   <br>
+   <div class="col-md-6">
+    <div class="fb-comments" data-href="http://www.seatkhalicha.com{{request.get_full_path}}" data-numposts="10" width="100%"></div>
+   </div>
 </div>       
-</div>
 </div>
 {% endblock content %}
 {% block scripts %}
