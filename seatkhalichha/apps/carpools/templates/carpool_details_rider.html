@@ -6,21 +6,22 @@
 <div class='page-container container list-table'>
     <h1><a href={% url 'home' %} class='link main-back'><</a></h1>
 
-    <h1>Job <span class='jobId'>CARPOOL DETAILS</span></h1>
- </span>
-    </h1>
-    <div class="hora-job-form">
-        <div class='row'>
-         <form action="" method="post" id="jobEditForm">{% csrf_token %}
-             {{carpool_form.vehicle_type.label_tag}} {{carpool_form.vehicle_type}}
-             {{carpool_form.occupancy.label_tag}} {{carpool_form.occupancy}}
-             {{carpool_form.remarks.label_tag}} {{carpool_form.remarks}}
-         <a class="btn btn-block btn-default submit" href="{% url 'requestCarpool' carpool_id=carpool.carpoolref %}">Request Carpool</a>
-         </div>
-         </form>
-         <br>
-        </div>       
-    </div>
+    <h1>CARPOOL DETAILS</span></h1>
+</span>
+</h1>
+<div class="hora-job-form">
+    <div class='row'>
+       <form action="" method="post" id="jobEditForm">{% csrf_token %}
+           {{carpool_form.vehicle_type.label_tag}} {{carpool_form.vehicle_type}}
+           {{carpool_form.occupancy.label_tag}} {{carpool_form.occupancy}}
+           {{carpool_form.remarks.label_tag}} {{carpool_form.remarks}}
+           <a class="btn btn-block btn-default submit" href="{% url 'requestCarpool' carpool_id=carpool.carpoolref %}">Request Carpool</a>
+       </div>
+   </form>
+   <br>
+   <div class="fb-comments" data-href="http://www.seatkhalicha.com{{request.get_full_path}}" data-numposts="10" width="100%"></div>
+</div>       
+</div>
 </div>
 {% endblock content %}
 {% block scripts %}

@@ -57,7 +57,7 @@
                     <td>{{carpool.remarks}}</td>
                     {% endif %}
                     <td>
-                        <a href="{% url 'requestCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Apply seat</button></a>
+                        <a href="{% url 'viewCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Details</button></a>
                     </td>
                 </tr>                
             {% endfor %}                
