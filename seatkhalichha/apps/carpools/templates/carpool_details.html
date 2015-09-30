@@ -17,6 +17,9 @@
        <form action="" method="post" id="jobEditForm">{% csrf_token %}
              {{carpool_form.vehicle_type.label_tag}} {{carpool_form.vehicle_type}}
              {{carpool_form.start_datetime.label_tag}} {{carpool_form.start_datetime}}
+             {% if carpool_form.errors %}
+                {{carpool_form.errors.end_datetime}}
+             {% endif %}
              {{carpool_form.end_datetime.label_tag}} {{carpool_form.end_datetime}}
              {{carpool_form.occupancy.label_tag}} {{carpool_form.occupancy}}
              {{carpool_form.remarks.label_tag}} {{carpool_form.remarks}}
