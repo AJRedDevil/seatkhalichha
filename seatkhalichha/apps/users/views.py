@@ -722,13 +722,13 @@ def userSettings(request):
             #     userdetails.address_coordinates = "POINT(" + \
             #         str(myLatLng['lng'])+" "+str(myLatLng['lat']) + ")"
 
-            if new_phone != old_phone:
-                UserToken.objects.create(user=user)
-                ### Update User Events
-                eventhandler = user_handler.UserEventManager()
-                eventhandler.setevent(request.user, 3)
-                userdetails.phone_status = False
-                um.sendVerfText(user.id)
+            # if new_phone != old_phone:
+            #     UserToken.objects.create(user=user)
+            #     ### Update User Events
+            #     eventhandler = user_handler.UserEventManager()
+            #     eventhandler.setevent(request.user, 3)
+            #     userdetails.phone_status = False
+            #     um.sendVerfText(user.id)
 
             userdetails.save()
 
