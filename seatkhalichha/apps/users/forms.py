@@ -128,6 +128,7 @@ class UserCreationForm(forms.ModelForm):
     #         'required': 'Please provide with a username !',
     #         'min_length': 'The username has to be more than 6 characters !',
     #     })
+
     password1 = forms.CharField(
         label=_("Password"),
         widget=forms.PasswordInput, min_length=6,
@@ -247,6 +248,14 @@ class UserSignupForm(forms.ModelForm):
     """
     A form for user signups
     """
+    email = forms.EmailField(
+        label=_("Email Address"),
+        help_text=_("Enter your email address."),
+        error_messages={
+            'required': 'Please provide with an email address !',
+            'min_length': 'The username has to be more than 6 characters !'}
+    )
+
     phone = PhoneNumberField(
         label=_("Phone"),
         help_text=_("Enter a valid mobile number."),
@@ -303,7 +312,7 @@ class UserSignupForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['name', 'phone']
+        fields = ['name', 'phone', 'email']
 
     def __init__(self, *args, **kwargs):
         super(UserSignupForm, self).__init__(*args, **kwargs)
@@ -471,7 +480,7 @@ class HMUserChangeForm(UserChangeForm):
     #         'min_length': 'The username has to be more than 6 characters !'}
     # )
 
-    email = forms.CharField(
+    email = forms.EmailField(
         label=_("Email Address"),
         help_text=_("Enter your email address."),
         error_messages={
@@ -502,7 +511,7 @@ class HMUserChangeForm(UserChangeForm):
 
     class Meta:
         model = UserProfile
-        fields = ['name', 'phone', 'profile_image', 'address_coordinates']
+        fields = ['name', 'phone', 'profile_image', 'address_coordinates', 'email']
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Hari Wagle'}),
             'phone': forms.TextInput(attrs={'placeholder': '9802036633'}),
