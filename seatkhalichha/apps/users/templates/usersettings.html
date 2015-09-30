@@ -40,11 +40,14 @@
                   {{user_form.email}}
                   {{user_form.email.errors}}
                 </div>
-                <div class="form-group">
-                  <label>Displayname</label>
-                  {{user_form.displayname}}
-                  {{user_form.displayname.errors}}
-                </div>
+                {% comment %}
+                  <div class="form-group">
+                    <label>Displayname</label>
+                    {{user_form.displayname}}
+                    {{user_form.displayname.errors}}
+                  </div>
+
+                {% endcomment %}
                 <div class="form-group">
                   <label>City</label>
                   {{user_form.city}}

@@ -20,7 +20,7 @@ def update_user_details(strategy, details, user=None, is_new=False, *args, **kwa
                 }
             details['name']=strategy.session_get('name')
             details['email']=strategy.session_get('email')
-            details['displayname']=strategy.session_get('displayname')
+            # details['displayname']=strategy.session_get('displayname')
             details['address_coordinates']=strategy.session_get('address_coordinates')
             return
             

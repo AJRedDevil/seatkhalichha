@@ -101,7 +101,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     )
     name = models.CharField(_('name'), max_length=30, blank=True)
     email = models.EmailField(max_length=254, null=True, unique=True)
-    displayname = models.CharField(_('displayname'), max_length=30, unique=True)
+    # displayname = models.CharField(_('displayname'), max_length=30, unique=True)
     phone_status = models.BooleanField(_('phone_status'), default=False)
     phone = PhoneNumberField(_('phone'), max_length=16, unique=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)

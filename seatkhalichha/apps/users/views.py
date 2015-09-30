@@ -666,7 +666,7 @@ def userSettings(request):
         city=user.address['city'],
         streetaddress=user.address['streetaddress'],
         email=user.email,
-        displayname=user.displayname,
+        # displayname=user.displayname,
         profile_image=user.profile_image,
         address_coordinates=user.address_coordinates,
     )
@@ -689,7 +689,7 @@ def userSettings(request):
             address['streetaddress'] = user_form.cleaned_data['streetaddress']
             userdata.address = address
             userdata.email = user_form.cleaned_data['email']
-            userdata.displayname = user_form.cleaned_data['displayname']
+            # userdata.displayname = user_form.cleaned_data['displayname']
             userdata.save()
             userdetails = um.getUserDetails(user.id)
             newaddress = userdetails.address

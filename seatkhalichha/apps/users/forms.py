@@ -121,13 +121,13 @@ class UserCreationForm(forms.ModelForm):
             'required': 'Please provide with a mobile number !',
             'min_length': 'The username has to be more than 6 characters !',
         })
-    displayname = forms.CharField(
-        label=_("Display name"),
-        help_text=_("Enter a name that'd be visible as your handle."),
-        error_messages={
-            'required': 'Please provide with a username !',
-            'min_length': 'The username has to be more than 6 characters !',
-        })
+    # displayname = forms.CharField(
+    #     label=_("Display name"),
+    #     help_text=_("Enter a name that'd be visible as your handle."),
+    #     error_messages={
+    #         'required': 'Please provide with a username !',
+    #         'min_length': 'The username has to be more than 6 characters !',
+    #     })
     password1 = forms.CharField(
         label=_("Password"),
         widget=forms.PasswordInput, min_length=6,
@@ -163,7 +163,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['name', 'phone', 'displayname']
+        fields = ['name', 'phone']
 
     def __init__(self, *args, **kwargs):
         if 'ebuser' in kwargs:
@@ -254,13 +254,13 @@ class UserSignupForm(forms.ModelForm):
             'required': 'Please provide with a mobile number !',
             'min_length': 'The username has to be more than 6 characters !',
         })
-    displayname = forms.CharField(
-        label=_("Display name"),
-        help_text=_("Enter a name that'd be visible as your handle."),
-        error_messages={
-            'required': 'Please provide with a username !',
-            'min_length': 'The username has to be more than 6 characters !',
-        })
+    # displayname = forms.CharField(
+    #     label=_("Display name"),
+    #     help_text=_("Enter a name that'd be visible as your handle."),
+    #     error_messages={
+    #         'required': 'Please provide with a username !',
+    #         'min_length': 'The username has to be more than 6 characters !',
+    #     })
     password1 = forms.CharField(
         label=_("Password"),
         widget=forms.PasswordInput,
@@ -303,13 +303,13 @@ class UserSignupForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['name', 'phone' ,'displayname']
+        fields = ['name', 'phone']
 
     def __init__(self, *args, **kwargs):
         super(UserSignupForm, self).__init__(*args, **kwargs)
         self.fields['phone'].widget.attrs.update({'class': 'form-control'})
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['displayname'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['displayname'].widget.attrs.update({'class': 'form-control'})
         self.fields['password1'].widget.attrs.update({'class': 'form-control'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control'})
         self.fields['city'].widget.attrs.update({'class': 'form-control ip-form'})
@@ -449,7 +449,7 @@ class HMUserChangeForm(UserChangeForm):
         self.fields['name'].widget.attrs = {'class': 'form-control'}
         self.fields['phone'].widget.attrs = {'class': 'form-control'}
         self.fields['email'].widget.attrs = {'class': 'form-control'}
-        self.fields['displayname'].widget.attrs = {'class': 'form-control'}
+        # self.fields['displayname'].widget.attrs = {'class': 'form-control'}
         self.fields['city'].widget.attrs = {'class': 'form-control'}
         self.fields['address_coordinates'].widget = GMapPointWidget(
             attrs={'map_width': 750, 'map_height': 500})
@@ -463,13 +463,13 @@ class HMUserChangeForm(UserChangeForm):
         required=False
     )
 
-    displayname = forms.CharField(
-        label=_("Display name"),
-        help_text=_("Your nickname here."),
-        error_messages={
-            'required': 'Please provide with a displayname !',
-            'min_length': 'The username has to be more than 6 characters !'}
-    )
+    # displayname = forms.CharField(
+    #     label=_("Display name"),
+    #     help_text=_("Your nickname here."),
+    #     error_messages={
+    #         'required': 'Please provide with a displayname !',
+    #         'min_length': 'The username has to be more than 6 characters !'}
+    # )
 
     email = forms.CharField(
         label=_("Email Address"),
