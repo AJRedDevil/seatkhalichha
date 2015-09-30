@@ -9,3 +9,11 @@ def index(request):
     if user.is_authenticated():
         return redirect('home')
     return render(request, 'landingpage.html', locals())
+
+
+def about(request):
+    """
+    Returns about Page
+    """
+    user = request.user
+    return render(request, 'about.html', locals())

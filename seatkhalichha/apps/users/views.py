@@ -220,12 +220,11 @@ def signup(request):
 
 
 @login_required
-@is_verified
 def home(request):
     """Post login this is returned and displays user's home page"""
     user = request.user
-    crm = CarpoolReqManager()
-    carpool_requests = crm.getMyCarpoolReqs(user)
+    # crm = CarpoolReqManager()
+    # carpool_requests = crm.getMyCarpoolReqs(user)
     ##Acquire all the current open jobs related to the user
     # from apps.jobs.handler import JobManager
     # jb = JobManager()
@@ -234,7 +233,6 @@ def home(request):
     #     return render(request, 'admin/joblist.html', locals())
 
     return render(request, 'homepage.html', locals())
-
 
 # @login_required
 # @is_superuser

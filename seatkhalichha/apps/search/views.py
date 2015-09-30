@@ -4,9 +4,7 @@ from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from seatkhalichha.decorators import is_superuser
 
-from apps.users import handler as userhandler
-from apps.users import forms as userforms
-from libs.googleapi_handler import GMapPointWidget
+from apps.carpools import handler as cphandler
 import simplejson as json
 import logging
 import re
@@ -16,19 +14,18 @@ logger = logging.getLogger(__name__)
 
 
 @login_required
-@is_superuser
-def userSearch(request, phone=None):
+def carpoolSearch(request, route=None):
     """
-    Searches a user for the matching pattern and
+    Searches a carpool for the matching pattern and
     returns a list of matches
     """
     logging.warn(request.GET)
 
-    if 'user' in request.GET:
-        querystring = request.GET['user']
-        um = userhandler.UserManager()
-        result = um.getUserList(querystring)
-        data = result.values('phone', 'name')
+    if 'route' in request.GET:
+        querystring = request.GET['route']
+        cm = cphandler.CarpoolManager()
+        result = cm.getCarpoolsByRoute(querystring)
+        data = result.values('id', 'route', 'occupancy')
         data = json.loads(json.dumps(list(data)))
         responsedata = dict(detail=data)
         return HttpResponse(
@@ -40,21 +37,21 @@ def userSearch(request, phone=None):
 
 
 @login_required
-@is_superuser
-def userSearchDetail(request):
+def carpoolSearchDetail(request):
     """
-    Searches a user from the mobile number provided
-    And lists their detail
+    Searches carpools from the route provided
+    and lists their detail
     """
+    user = request.user
     if request.method == "POST":
-        logger.debug(request.POST)
-        phone = request.POST['phone']
-        try:
-            phone = re.findall('\((.*?)\)', phone)[-1]
-        except Exception:
-            return redirect('home')
-        um = userhandler.UserManager()
-        customer = um.getUserDetailsFromPhone(phone)
-        return redirect('editUserDetail', userref=customer.userref)
+        logging.warn(request.POST)
+        route = request.POST['route']
+        # try:
+        #     route = re.findall('\((.*?)\)', route)
+        #     logging.warn(route)
+        # except Exception:
+        #     return redirect('home')
+        cm = cphandler.CarpoolManager()
+        carpools = cm.getCarpoolDetailsByRoute(route)
+        return render(request, 'list_carpools.html', locals())
     return redirect('home')
-

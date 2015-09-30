@@ -45,6 +45,20 @@ class CarpoolManager(object):
         # )
         return carpools
 
+    def getCarpoolsByRoute(self, route):
+        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route) | Carpools.objects.filter(ishidden=False, route__contains=route)
+        # logger.debug("Carpool Details : \n {0}".format(
+        #     serializers.serialize('json', carpools))
+        # )
+        return carpools
+
+    def getCarpoolDetailsByRoute(self, route):
+        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route.split(' ')[0])
+        # logger.debug("Carpool Details : \n {0}".format(
+        #     serializers.serialize('json', carpools))
+        # )
+        return carpools
+
 
 class CarpoolReqManager(object):
     """docstring for carpool request manager"""

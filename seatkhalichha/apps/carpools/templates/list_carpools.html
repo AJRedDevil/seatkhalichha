@@ -2,7 +2,16 @@
 {% load urlize_target_blank %}
 {% block content %}
     <div class='page-container container landing-table'>
+    <h1><a href={% url 'home' %} class='link main-back'><</a></h1>
         <h1>Recent Carpools</h1>
+        <form action={% url 'carpoolSearchDetail' %} method='POST' role="search">{% csrf_token %}
+        <div class="input-group">
+          <input type="text" name="route" class="typeahead form-control" placeholder="Enter your location of interest for carpooling .... ">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default" type="button">Find me a ride!</button>
+          </span>
+        </div><!-- /input-group -->
+        </form>
 
     <div class="hora-table">
         
@@ -48,7 +57,7 @@
                     <td>{{carpool.remarks}}</td>
                     {% endif %}
                     <td>
-                        <a href="{% url 'viewCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Details</button></a>
+                        <a href="{% url 'requestCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Apply seat</button></a>
                     </td>
                 </tr>                
             {% endfor %}                

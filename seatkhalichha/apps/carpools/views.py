@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from seatkhalichha.decorators import is_superuser
 from .forms import CarpoolCreationForm, CarpoolEditForm, CarpoolViewForm, CarpoolRequestCreateForm
-from .handler import CarpoolManager
+from .handler import CarpoolManager, CarpoolReqManager
 import logging
 # Init Logger
 logger = logging.getLogger(__name__)
@@ -106,3 +106,19 @@ def requestCarpool(request, carpool_id):
         return render(request, 'request_carpool.html', locals())
 
     return render(request, 'request_carpool.html', locals())
+
+
+@login_required
+def myRequests(request):
+    """Post login this is returned and displays user's home page"""
+    user = request.user
+    crm = CarpoolReqManager()
+    carpool_requests = crm.getMyCarpoolReqs(user)
+    ##Acquire all the current open jobs related to the user
+    # from apps.jobs.handler import JobManager
+    # jb = JobManager()
+    # jobs = jb.getAllJobs(user)
+    # if user.is_staff or user.is_superuser:
+    #     return render(request, 'admin/joblist.html', locals())
+
+    return render(request, 'carpool_requests.html', locals())
