@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
 from apps.users import views as userviews
-from .views import index
+from .views import index, about
 admin.autodiscover()
 
 urlpatterns = patterns(
@@ -17,5 +17,6 @@ urlpatterns = patterns(
     url(r'^search/', include('apps.search.urls')),
     url(r'^faq/', include('apps.faq.urls')),
     url(r'^carpool/', include('apps.carpools.urls')),
+    url(r'^about/$', about, name='about'),
     url(r'^$', index, name='index'),
 )

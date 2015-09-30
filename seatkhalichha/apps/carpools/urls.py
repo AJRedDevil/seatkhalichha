@@ -9,5 +9,6 @@ urlpatterns = patterns('',
     url(r'^$', carpoolviews.listAllCarpools, name='listAllCarpools'),
     url(r'^create/$', carpoolviews.createCarpool, name='createCarpool'),
     url(r'^request/(?P<carpool_id>\w+)', carpoolviews.requestCarpool, name='requestCarpool'),
+    url(r'^requests/$', carpoolviews.myRequests, name='myRequests'),
     url(r'(?P<carpool_id>\w+)/$', carpoolviews.viewCarpool, name='viewCarpool' ),
 )

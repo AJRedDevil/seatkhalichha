@@ -1,0 +1,81 @@
+{% extends "admin/base.html" %}
+{% load pipeline %}
+{% load staticfiles %}
+{% block localhead %}
+{% stylesheet 'home' %}
+{% endblock localhead %}
+{% block content %}
+<div class='container'>
+    <div class='banner-container'>
+        <div class="row">
+        <form action={% url 'carpoolSearchDetail' %} method='POST' role="search">{% csrf_token %}
+        <h1 class="banner-title">Where do you want to go ?</h1>
+        <div class="input-group">
+          <input type="text" name="route" class="typeahead form-control" placeholder="Enter your location of interest for carpooling .... ">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default" type="button">Find me a ride!</button>
+          </span>
+        </div><!-- /input-group -->
+        </div>
+    <div class="hora-table">
+    <br><br>
+    <h1 class="banner-title">Applications to your carpools!</h1>
+    <br><br>        
+    <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Carpool Name</th>
+                    <th>Rider's Name</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+     
+            <tfoot>
+                <tr>
+                    <th>Carpool Name</th>
+                    <th>Rider's Name</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+     
+            <tbody>
+
+            {% for request in carpool_requests %}
+                <tr>
+                    <td>{{request.carpool.route}}</td>
+                    <td>{{request.rider.name}}</td>
+                    <td>{{request.rider.phone}}</td>
+                    <td>{{request.message}}</td>
+                    <td>
+                        <a href="#"><button class='table-job-check'>Accept</button></a>
+                        <a href="#"><button class='table-job-check'>Reject</button></a>
+                    </td>
+                </tr>                
+            {% endfor %}                
+            </tbody>
+        </table>
+
+    </div>
+    <!-- eo hora-table -->
+    </div>
+
+
+    </div>
+</div>
+
+{% endblock content %}
+{% block scripts %}
+    
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable( {
+          responsive: true,
+          "bFilter": false
+      } );
+    } );
+    </script>
+{% endblock %}
