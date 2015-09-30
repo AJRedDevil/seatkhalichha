@@ -29,6 +29,8 @@
 
 {% block scripts %}
   <script type="text/javascript">
-        jQuery('.dateTimePicker').datetimepicker();
+        jQuery('.dateTimePicker').datetimepicker({
+            step: 15
+        });
     </script>
 {% endblock scripts %}

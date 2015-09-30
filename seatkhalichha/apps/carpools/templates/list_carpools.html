@@ -10,7 +10,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Vehicle Type</th>
+                    <th>Vehicle</th>
                     <th>Route</th>
                     <th>From</th>
                     <th>Till</th>
@@ -23,7 +23,7 @@
             <tfoot>
                 <tr>
                     <th>ID</th>
-                    <th>Vehicle Type</th>
+                    <th>Vehicle</th>
                     <th>Route</th>
                     <th>Valid From</th>
                     <th>Valid Till</th>
@@ -42,7 +42,7 @@
                     <td>{{carpool.route}}</td>
                     <td>{{carpool.start_datetime}}</td>
                     <td>{{carpool.end_datetime}}</td>
-                    <td>{{carpool.Seats}}</td>
+                    <td>{{carpool.occupancy}}</td>
                     {% if 'http://' in carpool.remarks %}
                             <td>{{carpool.remarks | urlize_target_blank }}</td>
                     {% elif 'https://' in carpool.remarks %}
