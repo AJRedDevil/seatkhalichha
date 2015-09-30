@@ -912,12 +912,11 @@ def editUserDetail(request, userref):
     return render(request, 'userdetails.html', locals())
 
 def acquireInfo(request):
-    backend=request.session['partial_pipeline']['backend']
-    
     if request.POST:
         user_form=userforms.HMUserChangeForm(request.POST)
         if user_form.is_valid():
             data=request.POST
+            backend=request.session['partial_pipeline']['backend']
             request.session['user_valid']=True
             request.session['phone']=data.get('phone')
             request.session['name']=data.get('name')
