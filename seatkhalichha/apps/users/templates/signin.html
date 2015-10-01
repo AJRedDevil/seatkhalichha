@@ -35,11 +35,12 @@
                   </p>
           </div>
             <button type="submit" class="btn btn-primary btn-block full-width m-b" ng-disabled="form.$invalid || isUnchanged(user)">Login</button>
-            <p class="text-muted text-center"><small>Or signup using ...</small></p>
+            <br><p class="text-muted text-center"><small>Don't have an acount yet ? signup using ...</small></p>
             <a class="btn btn-block btn-social btn-facebook" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><i class="fa fa-facebook"></i>Facebook</a>
             <a class="btn btn-block btn-social btn-twitter" href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><i class="fa fa-twitter"></i>Twitter</a>
-          <p class="text-muted text-center"><small>Don't have an acount yet ?</small></p>
-          <a class="btn btn-default btn-block" href="{% url 'signup'%}"{>Create an account</a>
+          {% comment %}
+            <a class="btn btn-default btn-block" href="{% url 'signup'%}"{>Create an account</a>            
+          {% endcomment %}
         <small>Seatkhalicha is powered by <a href="http://www.doorsteps.co">Doorsteps</a> &copy; 2015</small>
     </div>
     <div class="col-md-4"></div>

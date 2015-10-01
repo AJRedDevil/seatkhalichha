@@ -69,7 +69,7 @@ class CarpoolManager(object):
         return carpools
 
     def getCarpoolsByRoute(self, route):
-        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route, end_datetime__gt=timezone.now()) | Carpools.objects.filter(ishidden=False, route__contains=route)
+        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route, end_datetime__gt=timezone.now()) | Carpools.objects.filter(ishidden=False, route__contains=route, end_datetime__gt=timezone.now())
         # logger.debug("Carpool Details : \n {0}".format(
         #     serializers.serialize('json', carpools))
         # )

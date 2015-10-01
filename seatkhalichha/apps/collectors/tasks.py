@@ -42,11 +42,15 @@ def loadFBCarpool():
     contents = Collector_Contents.objects.filter(is_loaded=False)
     for content in contents:
         carpool = Carpools()
-        message_clean = str(content.content['message'].replace('\n', ' '))
+        try:
+            message_clean = str(content.content['message'].replace('\n', ' '))
+        except Exception, e:
+            continue
+        finally:
+            content.is_loaded = True
+            content.save()
         carpool.route = ''.join([str(x) for x in message_clean.split("#offer") if x != ''])
         # this driver is temporary, later it would be one of the admins
         carpool.driver = UserProfile.objects.get(phone="+9779802036633")
         carpool.tp_url = content.shortlink
-        content.is_loaded = True
-        content.save()
         carpool.save()
