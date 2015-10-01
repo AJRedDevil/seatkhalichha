@@ -35,7 +35,6 @@ def grabOffers():
                     pass
 
 
-
 def loadFBCarpool():
     """
     Load carpools from facebook onto system
@@ -43,8 +42,11 @@ def loadFBCarpool():
     contents = Collector_Contents.objects.filter(is_loaded=False)
     for content in contents:
         carpool = Carpools()
-        carpool.route = str(content.content['message'].split("#offer ")[1])
+        message_clean = str(content.content['message'].replace('\n', ' '))
+        carpool.route = ''.join([str(x) for x in message_clean.split("#offer") if x != ''])
         # this driver is temporary, later it would be one of the admins
         carpool.driver = UserProfile.objects.get(phone="+9779802036633")
         carpool.tp_url = content.shortlink
+        content.is_loaded = True
+        content.save()
         carpool.save()
