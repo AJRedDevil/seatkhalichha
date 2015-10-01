@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'floppyforms',
     # 'apps.faq',
     'social.apps.django_app.default',
+    'apps.collectors',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -183,7 +184,8 @@ ADMINS = (
 MANAGERS = ADMINS
 
 #GOOGlE RELATED CONFIGURATIONS
-GOOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
+GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
+SEATKHALICHA_URL_API = os.environ['SEATKHALICHA_URL_API']
 
 # Phone number setting
 PHONENUMBER_DEFAULT_REGION = 'NP'

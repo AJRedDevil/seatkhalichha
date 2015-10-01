@@ -70,6 +70,7 @@ class Carpools(models.Model):
         max_length=1,
         choices=VEHICLE_TYPE,
         default='0',)
+    tp_url = models.URLField(_('tp_url'), blank=True)
     occupancy = models.IntegerField(_('Seats'), max_length=10, default=1)
     # jobs that are deleted or are to be purged would have this flag
     # set as true, no data would be permanently removed
@@ -78,7 +79,7 @@ class Carpools(models.Model):
     # location / coordinates of the exact jobsite
     route = models.TextField(_('route'), blank=False)
     start_datetime= models.DateTimeField(
-        _('Pickup Time'),
+        _('Pickup Around'),
         default=timezone.now
         )
     end_datetime= models.DateTimeField(

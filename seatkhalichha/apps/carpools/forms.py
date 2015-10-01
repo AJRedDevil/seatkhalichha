@@ -123,7 +123,7 @@ class CarpoolEditForm(forms.ModelForm):
 
     class Meta:
         model = Carpools
-        fields = ['vehicle_type', 'remarks', 'occupancy', 'start_datetime']
+        fields = ['vehicle_type', 'route', 'remarks', 'occupancy', 'start_datetime']
 
 
     def __init__(self, *args, **kwargs):
@@ -131,6 +131,7 @@ class CarpoolEditForm(forms.ModelForm):
         self.fields['vehicle_type'].widget.attrs.update({'class' : 'form-control'})
         self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Anything you want to say to the rider. '}
         self.fields['occupancy'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['route'].widget.attrs.update({'class' : 'form-control'})
         self.fields['start_datetime'].widget.attrs={'class' : 'form-control dateTimePicker'}
         self.fields['start_datetime'].input_formats=['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S', '%Y/%m/%d %H:%M']
         # self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00'}

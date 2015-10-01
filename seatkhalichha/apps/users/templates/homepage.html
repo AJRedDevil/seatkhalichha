@@ -50,7 +50,7 @@
                     <th>ID</th>
                     <th>Vehicle</th>
                     <th>Route</th>
-                    <th>Pickup Time</th>
+                    <th>Pickup Around</th>
                     <th>Seats</th>
                     <th>Remarks</th>
                     <th>Action</th>
@@ -62,7 +62,7 @@
                     <th>ID</th>
                     <th>Vehicle</th>
                     <th>Route</th>
-                    <th>Pickup Time</th>
+                    <th>Pickup Around</th>
                     <th>Seats</th>
                     <th>Remarks</th>
                     <th>Action</th>
@@ -86,7 +86,11 @@
                     <td>{{carpool.remarks}}</td>
                     {% endif %}
                     <td>
-                    <a href="{% url 'viewCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Details</button></a>
+                        {% if carpool.tp_url %}
+                            <a target="_blank" href="{{carpool.tp_url}}"><button class='table-job-check'>Details</button></a>
+                        {% else %}
+                            <a href="{% url 'viewCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Details</button></a>
+                        {% endif %}
                     </td>
                 </tr>                
             {% endfor %}                
