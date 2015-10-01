@@ -27,10 +27,12 @@
     <table id="example" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    {% if user.is_superuser %}
+                        <th>ID</th>                        
+                    {% endif %}
+                    <th>Pickup Around</th>
                     <th>Vehicle</th>
                     <th>Route</th>
-                    <th>Pickup Around</th>
                     <th>Seats</th>
                     <th>Remarks</th>
                     <th>Action</th>
@@ -39,10 +41,12 @@
      
             <tfoot>
                 <tr>
-                    <th>ID</th>
+                    {% if user.is_superuser %}
+                        <th>ID</th>                        
+                    {% endif %}
+                    <th>Pickup Around</th>
                     <th>Vehicle</th>
                     <th>Route</th>
-                    <th>Pickup Around</th>
                     <th>Seats</th>
                     <th>Remarks</th>
                     <th>Action</th>
@@ -53,10 +57,12 @@
 
             {% for carpool in carpools %}
                 <tr>
+                    {% if user.is_superuser %}
                     <td>{{carpool.id}}</td>
+                    {% endif %}
+                    <td>{{carpool.start_datetime|date:'M-d H:i'}}</td>
                     <td>{{carpool.get_vehicle_type_display}}</td>
                     <td>{{carpool.route | truncatechars:40 }}</td>
-                    <td>{{carpool.start_datetime|date:'M-d H:i'}}</td>
                     <td>{{carpool.occupancy}}</td>
                     <td>{{carpool.remarks | truncatechars:40 }}</td>
                     <td>
@@ -80,21 +86,35 @@
     </div>
 {% endblock content %}
 {% block scripts %}
-    
-    
-<script>
-  $(document).ready(function() {
-    $('#example').DataTable( {
-      responsive: true,
-      "order": [[ 0, "desc" ]],
-      "columnDefs": [
-        { "width": "5%", "targets": 0 },
-        { "width": "5%", "targets": 1 },
-        { "width": "25%", "targets": 2 },
-        { "width": "15%", "targets": 3 },
-        { "width": "10%", "targets": 6 },
-      ]
-  } );
-} );
-</script>
+{% if user.is_superuser %}
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable( {
+          responsive: true,
+          "order": [[ 0, "desc" ]],
+          "columnDefs": [
+            { "width": "5%", "targets": 0 },
+            { "width": "5%", "targets": 1 },
+            { "width": "15%", "targets": 2 },
+            { "width": "15%", "targets": 3 },
+          ]
+      } );
+    } );
+    </script>
+{% else %}
+    <script>
+      $(document).ready(function() {
+        $('#example').DataTable( {
+          responsive: true,
+          "order": [[ 0, "asc" ]],
+          "columnDefs": [
+            { "width": "15%", "targets": 0 },
+            { "width": "5%", "targets": 1 },
+            { "width": "25%", "targets": 2 },
+            { "width": "15%", "targets": 3 },
+          ]
+      } );
+    } );
+    </script>
+{% endif %}
 {% endblock %}

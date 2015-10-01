@@ -40,13 +40,13 @@ def viewCarpool(request, carpool_id):
     carpool = cm.getCarpoolDetails(carpool_id)
     carpool_form = CarpoolViewForm(instance=carpool)
     if user.is_authenticated():
-        if carpool.driver != user:
+        if not user.is_superuser and carpool.driver != user:
             return render(request, 'carpool_details_rider.html', locals())
         carpool_form = CarpoolEditForm(instance=carpool)
         if request.method == "POST":
             if not user.is_authenticated():
                 return redirect('index')
-            if carpool.driver == user:
+            if carpool.driver == user or user.is_superuser:
                 logger.debug(request.POST)
                 carpool_form = CarpoolEditForm(request.POST, instance=carpool)
                 if carpool_form.is_valid():
