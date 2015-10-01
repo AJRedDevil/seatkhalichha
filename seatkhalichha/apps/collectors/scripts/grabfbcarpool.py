@@ -4,4 +4,4 @@ def run():
     """
     from apps.collectors.tasks import grabOffers, loadFBCarpool
     grabOffers()
-    loadFBCarpool()
+    # loadFBCarpool()
