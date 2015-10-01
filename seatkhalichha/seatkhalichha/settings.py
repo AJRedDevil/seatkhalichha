@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     # 'apps.faq',
     'social.apps.django_app.default',
     'apps.collectors',
+    'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (

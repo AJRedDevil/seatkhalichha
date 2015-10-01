@@ -27,6 +27,7 @@ VEHICLE_TYPE = (
     ('0', 'Bike'),
     ('1', 'Car'),
     ('2', 'Van'),
+    ('3', 'Walking'),
 )
 
 # Returns a hash that is used as identifier for jobs
