@@ -1,10 +1,14 @@
 
 
-from apps.users.models import UserProfile
+import uuid
+import pytz
+from datetime import datetime
 from django.contrib.gis.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
-import uuid
+
+from apps.users.models import UserProfile
+
 
 # Create your models here.
 # Job Statuses
@@ -31,6 +35,12 @@ VEHICLE_TYPE = (
 def getUniqueUUID():
     uniqueID = ''.join(str(uuid.uuid4()).split('-'))
     return uniqueID
+
+def get_end_datetime(pickup_datetime):
+    tzinfo=pytz.timezone("Asia/Kathmandu")
+    end_datetime=datetime(pickup_datetime.year,pickup_datetime.month, pickup_datetime.day, 23, 59)
+    end_datetime=timezone.make_aware(end_datetime, tzinfo)
+    return end_datetime
 
 
 class Carpools(models.Model):
@@ -68,7 +78,7 @@ class Carpools(models.Model):
     # location / coordinates of the exact jobsite
     route = models.TextField(_('route'), blank=False)
     start_datetime= models.DateTimeField(
-        _('Available from'),
+        _('Pickup Time'),
         default=timezone.now
         )
     end_datetime= models.DateTimeField(
@@ -86,6 +96,8 @@ class Carpools(models.Model):
         # set a unique ID for each jobs
         if self.carpoolref == '':
             self.carpoolref = ''.join(str(uuid.uuid4()).split('-'))
+        if self.start_datetime:
+            self.end_datetime=get_end_datetime(self.start_datetime)
 
         # if no location is provided while creating the job
         # user the customer's default home location

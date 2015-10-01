@@ -1,6 +1,7 @@
 from django import forms
 from django.core import validators
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from .models import Carpools, Carpool_Requests
 
@@ -75,6 +76,9 @@ class CarpoolCreationForm(forms.ModelForm):
     """
     A form that creates a post, from the given data
     """
+    error_messages = {
+        'past': _("Please provide future date"),
+        }
 
     # route = CommaSeparatedCharField(
     #     label=_("route"),
@@ -85,28 +89,41 @@ class CarpoolCreationForm(forms.ModelForm):
 
     class Meta:
         model = Carpools
-        fields = ['vehicle_type', 'start_datetime', 'end_datetime', 'remarks', 'route', 'occupancy', ]
+        fields = ['vehicle_type', 'start_datetime', 'remarks', 'route', 'occupancy', ]
 
     def __init__(self, *args, **kwargs):
         super(CarpoolCreationForm, self).__init__(*args, **kwargs)
         self.fields['vehicle_type'].widget.attrs={'class' : 'form-control'}
         self.fields['start_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', }
         self.fields['start_datetime'].input_formats=['%Y/%m/%d %H:%M']
-        self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00'}
-        self.fields['end_datetime'].input_formats=['%Y/%m/%d %H:%M']
+        # self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00'}
+        # self.fields['end_datetime'].input_formats=['%Y/%m/%d %H:%M']
         self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Anything you want to say to the rider. '}
         self.fields['occupancy'].widget.attrs={'class' : 'form-control'}
         self.fields['route'].widget.attrs={'class' : 'form-control', 'placeholder': 'Budhanilkantha to Baluwatar'}
+
+    def clean_start_datetime(self):
+        start_datetime=self.cleaned_data.get('start_datetime')
+        if start_datetime < timezone.now():
+            raise forms.ValidationError(
+            self.error_messages['past'],
+            code='past'
+            )
+        return start_datetime
+
 
 
 class CarpoolEditForm(forms.ModelForm):
     """
     A form that edits a carpool data
     """
+    error_messages = {
+        'past': _("Please provide future date"),
+        }
 
     class Meta:
         model = Carpools
-        fields = ['vehicle_type', 'remarks', 'occupancy', 'start_datetime', 'end_datetime']
+        fields = ['vehicle_type', 'remarks', 'occupancy', 'start_datetime']
 
 
     def __init__(self, *args, **kwargs):
@@ -116,8 +133,17 @@ class CarpoolEditForm(forms.ModelForm):
         self.fields['occupancy'].widget.attrs.update({'class' : 'form-control'})
         self.fields['start_datetime'].widget.attrs={'class' : 'form-control dateTimePicker'}
         self.fields['start_datetime'].input_formats=['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S', '%Y/%m/%d %H:%M']
-        self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00'}
-        self.fields['end_datetime'].input_formats=['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S', '%Y/%m/%d %H:%M']
+        # self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00'}
+        # self.fields['end_datetime'].input_formats=['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S', '%Y/%m/%d %H:%M']
+
+    def clean_start_datetime(self):
+        start_datetime=self.cleaned_data.get('start_datetime')
+        if start_datetime < timezone.now():
+            raise forms.ValidationError(
+            self.error_messages['past'],
+            code='past'
+            )
+        return start_datetime
 
 
 class CarpoolViewForm(forms.ModelForm):
@@ -127,7 +153,7 @@ class CarpoolViewForm(forms.ModelForm):
 
     class Meta:
         model = Carpools
-        fields = ['vehicle_type', 'remarks', 'occupancy', 'start_datetime', 'end_datetime']
+        fields = ['vehicle_type', 'remarks', 'occupancy', 'start_datetime']
 
 
     def __init__(self, *args, **kwargs):
@@ -135,8 +161,8 @@ class CarpoolViewForm(forms.ModelForm):
         self.fields['vehicle_type'].widget.attrs={'class' : 'form-control', 'readonly': 'readonly'}
         self.fields['start_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'readonly': 'readonly'}
         self.fields['start_datetime'].input_formats=['%Y/%m/%d %H:%M']
-        self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00', 'readonly': 'readonly'}
-        self.fields['end_datetime'].input_formats=['%Y/%m/%d %H:%M']
+        # self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00', 'readonly': 'readonly'}
+        # self.fields['end_datetime'].input_formats=['%Y/%m/%d %H:%M']
         self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Anything you want to say to the rider. ', 'readonly': 'readonly'}
         self.fields['occupancy'].widget.attrs={'class' : 'form-control', 'readonly': 'readonly'}
 

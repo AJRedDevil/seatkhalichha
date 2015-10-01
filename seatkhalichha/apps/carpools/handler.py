@@ -39,7 +39,7 @@ class CarpoolManager(object):
         #         jobs.extend(Jobs.objects.filter(customer_id=subscriber.id))
         # else:
         #     jobs = []
-        carpools = Carpools.objects.filter(ishidden=False, status='0')
+        carpools = Carpools.objects.filter(ishidden=False, status='0', end_datetime__gt=timezone.now())
         # logger.debug("Carpool Details : \n {0}".format(
         #     serializers.serialize('json', carpools))
         # )
@@ -62,14 +62,14 @@ class CarpoolManager(object):
         #         jobs.extend(Jobs.objects.filter(customer_id=subscriber.id))
         # else:
         #     jobs = []
-        carpools = Carpools.objects.filter(ishidden=False).order_by('-id')[:20]
+        carpools = Carpools.objects.filter(ishidden=False, end_datetime__gt=timezone.now()).order_by('-id')[:20]
         # logger.debug("Carpool Details : \n {0}".format(
         #     serializers.serialize('json', carpools))
         # )
         return carpools
 
     def getCarpoolsByRoute(self, route):
-        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route) | Carpools.objects.filter(ishidden=False, route__contains=route)
+        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route, end_datetime__gt=timezone.now()) | Carpools.objects.filter(ishidden=False, route__contains=route)
         # logger.debug("Carpool Details : \n {0}".format(
         #     serializers.serialize('json', carpools))
         # )

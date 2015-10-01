@@ -52,11 +52,11 @@ def viewCarpool(request, carpool_id):
                 if carpool_form.is_valid():
                     carpool_form.save()
                     return redirect('listAllCarpools')
-            return redirect('listAllCarpools')
 
-            if carpool_form.errors:
-                logger.debug("Form has errors, %s ", carpool_form.errors)
-                return render(request, 'carpool_details.html', locals())
+                if carpool_form.errors:
+                    logger.debug("Form has errors, %s ", carpool_form.errors)
+                    return render(request, 'carpool_details.html', locals())
+            return redirect('listAllCarpools')
 
         return render(request, 'carpool_details.html', locals())
 
