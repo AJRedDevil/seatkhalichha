@@ -54,6 +54,9 @@
                         {% else %}
                             <a href="{% url 'viewCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>Details</button></a>
                         {% endif %}
+                        {% if user.is_superuser %}
+                        <a href="{% url 'viewCarpool' carpool_id=carpool.carpoolref %}"><button class='table-job-check'>EditLink</button></a>
+                        {% endif %}
                     </td>
                 </tr>                
             {% endfor %}                

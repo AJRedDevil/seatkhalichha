@@ -295,8 +295,7 @@ class UserSignupForm(forms.ModelForm):
 
     streetaddress = forms.CharField(
         error_messages={
-            'required': _('Street/Apt. Address where the shipment is to be \
-            picked up from is required !'),
+            'required': _('Your address is required.'),
         })
 
     error_messages = {
