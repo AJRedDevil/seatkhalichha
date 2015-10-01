@@ -154,7 +154,7 @@ class CarpoolViewForm(forms.ModelForm):
 
     class Meta:
         model = Carpools
-        fields = ['vehicle_type', 'remarks', 'occupancy', 'start_datetime']
+        fields = ['vehicle_type', 'route', 'remarks', 'occupancy', 'start_datetime']
 
 
     def __init__(self, *args, **kwargs):
@@ -164,6 +164,7 @@ class CarpoolViewForm(forms.ModelForm):
         self.fields['start_datetime'].input_formats=['%Y/%m/%d %H:%M']
         # self.fields['end_datetime'].widget.attrs={'class' : 'form-control dateTimePicker', 'placeholder': '2015/09/30 18:00', 'readonly': 'readonly'}
         # self.fields['end_datetime'].input_formats=['%Y/%m/%d %H:%M']
+        self.fields['route'].widget.attrs.update({'class' : 'form-control', 'readonly': 'readonly'})
         self.fields['remarks'].widget.attrs={'class' : 'form-control', 'placeholder': 'Anything you want to say to the rider. ', 'readonly': 'readonly'}
         self.fields['occupancy'].widget.attrs={'class' : 'form-control', 'readonly': 'readonly'}
 

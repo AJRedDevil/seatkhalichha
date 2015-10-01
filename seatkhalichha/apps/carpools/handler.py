@@ -76,12 +76,15 @@ class CarpoolManager(object):
         return carpools
 
     def getCarpoolDetailsByRoute(self, route):
-        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route.split(' ')[0])
+        # carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route, end_datetime__gt=timezone.now()) | Carpools.objects.filter(ishidden=False, route__contains=route, end_datetime__gt=timezone.now())
+        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route.split(' ')[0], end_datetime__gt=timezone.now()) | Carpools.objects.filter(ishidden=False, route__contains=route.split(' ')[0], end_datetime__gt=timezone.now())
+
+
+        # carpools = Carpools.objects.filter(ishidden=False, route__istartswith=str(route.split(' ')[0]) | Carpools.objects.filter(ishidden=False, route__contains=str(route.split(' ')[0]), end_datetime__gt=timezone.now())
         # logger.debug("Carpool Details : \n {0}".format(
         #     serializers.serialize('json', carpools))
         # )
         return carpools
-
 
 class CarpoolReqManager(object):
     """docstring for carpool request manager"""

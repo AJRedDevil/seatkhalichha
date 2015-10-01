@@ -16,6 +16,7 @@
              {{carpool_form.vehicle_type.label_tag}} {{carpool_form.vehicle_type}}
              {{carpool_form.start_datetime.label_tag}} {{carpool_form.start_datetime}}
              {{carpool_form.occupancy.label_tag}} {{carpool_form.occupancy}}
+             {{carpool_form.route.label_tag}} {{carpool_form.route}}
              {{carpool_form.remarks.label_tag}} {{carpool_form.remarks}}
              <br><div class="fb-share-button" data-href="http://www.seatkhalicha.com{{request.get_full_path}}" data-layout="box_count"></div>
        <br><a class="btn btn-block btn-default submit" href="{% url 'requestCarpool' carpool_id=carpool.carpoolref %}">Request Carpool</a>
