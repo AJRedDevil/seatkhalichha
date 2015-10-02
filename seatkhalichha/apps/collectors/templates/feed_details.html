@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+{% load staticfiles floppyforms %}
+{% block localhead %}
+    <link rel="stylesheet" href={% static "css/jquery.datetimepicker.css" %}>
+    <script src={% static "js/jquery-2.1.1.js" %}></script>
+    <script src={% static "js/jquery.datetimepicker.js" %}></script>
+{% endblock localhead %}
+{% block content %}
+<div class='page-container container list-table'>
+    <h1><a href={% url 'home' %} class='link main-back'><</a></h1>
+    <h1><span class='jobId'>CARPOOL DETAILS</span></h1>
+</span>
+</h1>
+<div class="hora-job-form">
+    <div class='row'>
+    <div class="col-md-6">
+       <form action="" method="post" id="jobEditForm">{% csrf_token %}
+          {{feed_form.as_p}}
+       <br><button type="submit" class="btn btn-block btn-default submit">Update</button>
+       </div>
+   </form>
+   <br>
+</div>       
+</div>
+{% endblock content %}
+{% block scripts %}
+  <script type="text/javascript">
+  jQuery('.dateTimePicker').datetimepicker({
+    step: 30
+  });
+    </script>
+{% endblock scripts %}

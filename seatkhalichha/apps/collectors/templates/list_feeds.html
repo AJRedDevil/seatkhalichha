@@ -1,0 +1,77 @@
+{% extends "admin/base.html" %}
+{% load urlize_target_blank %}
+{% block content %}
+<div class="container">
+    
+
+        <div class='banner-container'>
+            <div class="row">
+            <form action={% url 'carpoolSearchDetail' %} method='POST' role="search">{% csrf_token %}
+            <h1 class="banner-title">हाम्रो मानवीयता जिउदै छ.....सिट खाली छ ! Where do you want to go ?</h1>
+            <div class="input-group">
+              <input type="text" name="route" class="typeahead form-control" placeholder="Enter your location of interest for carpooling .... ">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" type="button">Find me a ride!</button>
+              </span>
+            </div><!-- /input-group -->
+            </form>
+        </div>
+        </div>
+    <div class='page-container container landing-table'>
+
+    <h1><a href={% url 'home' %} class='link main-back'><</a></h1>
+        <h1>Recent Carpools</h1>
+
+    <div class="hora-table">
+        
+    <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>                        
+                    <th>Content</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+     
+            <tfoot>
+                <tr>
+                    <th>ID</th>                        
+                    <th>Content</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+     
+            <tbody>
+
+            {% for feed in feeds %}
+                <tr>
+                    <td>{{feed.id}}</td>
+                    <td>{{feed.content}}</td>
+                    <td>
+                    <a href="{% url 'viewFeed' feed_id=feed.id %}"><button class='table-job-check'>Create feed</button></a>
+                    </td>
+                </tr>                
+            {% endfor %}                
+            </tbody>
+        </table>
+
+    </div>
+    <!-- eo hora-table -->
+
+    </div>
+{% endblock content %}
+{% block scripts %}
+<script>
+  $(document).ready(function() {
+    $('#example').DataTable( {
+      responsive: true,
+      "order": [[ 0, "desc" ]],
+      "columnDefs": [
+        { "width": "5%", "targets": 0 },
+        { "width": "80%", "targets": 1 },
+        { "width": "15%", "targets": 2 },
+      ]
+  } );
+} );
+</script>
+{% endblock %}

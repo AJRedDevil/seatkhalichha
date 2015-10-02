@@ -14,6 +14,7 @@ urlpatterns = patterns(
     url(r'^home/$', userviews.home, name='home'),
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^users/', include('apps.users.urls')),
+    url(r'^feeds/', include('apps.collectors.urls')),
     url(r'^search/', include('apps.search.urls')),
     url(r'^faq/', include('apps.faq.urls')),
     url(r'^carpool/', include('apps.carpools.urls')),
