@@ -18,7 +18,7 @@ def grabOffers():
     posts = recent_posts['data']
     for post in posts:
         fb_content = Collector_Contents()
-        if '#offer' in post.get('message'):
+        if post.get('message') and '#offer' in post.get('message'):
                 gid_uid = post['id'].split('_')
                 permalink = 'https://www.facebook.com/groups/{0}/permalink/{1}/'.format(gid_uid[0], gid_uid[1])
                 short_url = shortener.get_short_url(dict(longUrl=permalink))
