@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from apps.carpools.handler import CarpoolManager
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect, HttpResponse
+
 import logging
 
 
@@ -21,3 +24,14 @@ def about(request):
     """
     user = request.user
     return render(request, 'about.html', locals())
+
+
+@csrf_exempt
+def fbpost(request):
+    """
+    facebook endpoint url
+    """
+    if request.method == "POST":
+        logging.warn(request.POST)
+        msg = 'It works!'
+        return HttpResponse(msg, content_type="text/html")
