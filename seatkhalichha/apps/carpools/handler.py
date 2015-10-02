@@ -78,7 +78,7 @@ class CarpoolManager(object):
         return carpools
 
     def getCarpoolsByRoute(self, route):
-        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route, start_datetime__gt=get_listing_startdatetime()) | Carpools.objects.filter(ishidden=False, route__contains=route, start_datetime__gt=get_listing_startdatetime())
+        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route, start_datetime__gt=get_listing_startdatetime()) | Carpools.objects.filter(ishidden=False, route__icontains=route, start_datetime__gt=get_listing_startdatetime())
         # logger.debug("Carpool Details : \n {0}".format(
         #     serializers.serialize('json', carpools))
         # )
@@ -86,7 +86,7 @@ class CarpoolManager(object):
 
     def getCarpoolDetailsByRoute(self, route):
         # carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route, end_datetime__gt=timezone.now()) | Carpools.objects.filter(ishidden=False, route__contains=route, end_datetime__gt=timezone.now())
-        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route.split(' ')[0], start_datetime__gt=get_listing_startdatetime()) | Carpools.objects.filter(ishidden=False, route__contains=route.split(' ')[0], start_datetime__gt=get_listing_startdatetime())
+        carpools = Carpools.objects.filter(ishidden=False, route__istartswith=route.split(' ')[0], start_datetime__gt=get_listing_startdatetime()) | Carpools.objects.filter(ishidden=False, route__icontains=route.split(' ')[0], start_datetime__gt=get_listing_startdatetime())
 
 
         # carpools = Carpools.objects.filter(ishidden=False, route__istartswith=str(route.split(' ')[0]) | Carpools.objects.filter(ishidden=False, route__contains=str(route.split(' ')[0]), end_datetime__gt=timezone.now())
