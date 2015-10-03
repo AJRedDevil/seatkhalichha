@@ -24,6 +24,7 @@ from apps.carpools.handler import CarpoolReqManager, CarpoolManager
 import apps.users.forms as userforms
 
 #All external imports (libs, packages)
+from libs.fbhelper import FBHandler
 # from libs.sparrow_handler import Sparrow
 # import apps.jobs.handler as jobs_handler
 # from libs import email_handler
@@ -116,9 +117,9 @@ def signup(request):
             except Exception as e:
                 return redirect('signup')
             userdata = user_form.save(commit=False)
-            userdata.address = dict(
-                city=user_form.cleaned_data['city'],
-                streetaddress=user_form.cleaned_data['streetaddress'])
+            # userdata.address = dict(
+            #     city=user_form.cleaned_data['city'],
+            #     streetaddress=user_form.cleaned_data['streetaddress'])
             userdata.save()
             authenticate(username=userdata.phone, password=userdata.password)
             userdata.backend = 'django.contrib.auth.backends.ModelBackend'
@@ -660,12 +661,12 @@ def userSettings(request):
     userdata = dict(
         name=user.name,
         phone=user.phone,
-        city=user.address['city'],
-        streetaddress=user.address['streetaddress'],
+        # city=user.address['city'],
+        # streetaddress=user.address['streetaddress'],
         email=user.email,
         # displayname=user.displayname,
         profile_image=user.profile_image,
-        address_coordinates=user.address_coordinates,
+        # address_coordinates=user.address_coordinates,
     )
 
     if request.method == "POST":
@@ -676,20 +677,20 @@ def userSettings(request):
             request.POST,
             request.FILES,
             instance=userdetails)
-        oldaddress = userdetails.address
+        # oldaddress = userdetails.address
         old_profile_image = userdetails.profile_image
         old_phone = userdetails.phone
         if user_form.is_valid():
             userdata = user_form.save(commit=False)
-            address = {}
-            address['city'] = user_form.cleaned_data['city']
-            address['streetaddress'] = user_form.cleaned_data['streetaddress']
-            userdata.address = address
+            # address = {}
+            # address['city'] = user_form.cleaned_data['city']
+            # address['streetaddress'] = user_form.cleaned_data['streetaddress']
+            # userdata.address = address
             userdata.email = user_form.cleaned_data['email']
             # userdata.displayname = user_form.cleaned_data['displayname']
             userdata.save()
             userdetails = um.getUserDetails(user.id)
-            newaddress = userdetails.address
+            # newaddress = userdetails.address
             new_phone = userdetails.phone
             if 'profile_image' in request.FILES:
                 new_profile_image = request.FILES['profile_image']
@@ -885,18 +886,18 @@ def editUserDetail(request, userref):
     customerdata = dict(
         name=customer.name,
         phone=customer.phone,
-        city=customer.address['city'],
-        streetaddress=customer.address['streetaddress'],
-        address_coordinates=customer.address_coordinates,
+        # city=customer.address['city'],
+        # streetaddress=customer.address['streetaddress'],
+        # address_coordinates=customer.address_coordinates,
     )
     if request.method == "POST":
         user_form = userforms.HMUserChangeForm(request.POST, instance=customer)
         if user_form.is_valid():
             userdata = user_form.save(commit=False)
-            address = {}
-            address['city'] = user_form.cleaned_data['city']
-            address['streetaddress'] = user_form.cleaned_data['streetaddress']
-            userdata.address = address
+            # # address = {}
+            # # address['city'] = user_form.cleaned_data['city']
+            # # address['streetaddress'] = user_form.cleaned_data['streetaddress']
+            # userdata.address = address
             userdata.save()
 
             return render(request, 'userdetails.html', locals())

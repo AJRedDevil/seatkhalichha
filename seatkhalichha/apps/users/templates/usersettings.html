@@ -46,21 +46,24 @@
                     {{user_form.displayname}}
                     {{user_form.displayname.errors}}
                   </div>
-
+<div class="form-group">
+  <label>City</label>
+  {{user_form.city}}
+</div>
+<div class="form-group">
+  <label>Streetadddress</label>
+  {{user_form.streetaddress}}
+</div>
                 {% endcomment %}
-                <div class="form-group">
-                  <label>City</label>
-                  {{user_form.city}}
-                </div>
-                <div class="form-group">
-                  <label>Streetadddress</label>
-                  {{user_form.streetaddress}}
-                </div>
+
                 <button type="submit" class="btn btn-default btn-block submit">Update</button>
         </div>
         <div class="col-md-8">
-                <label>Exact Location on Map</label>
-               {% widget user_form.address_coordinates %}
+                {# <label>Exact Location on Map</label> #}
+                {% comment %}
+                  {% widget user_form.address_coordinates %}
+                  
+                {% endcomment %}
     </div>
     </div>
 </div>

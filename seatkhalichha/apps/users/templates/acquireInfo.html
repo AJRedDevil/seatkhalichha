@@ -8,29 +8,29 @@
 {% block content %} 
 
 <div class='page-container container list-table'>
-<h1><span class='jobId'>Please provide your details below</span></h1>
 <div class="hora-job-form">
   <div class="row">
-  <div class="col-md-4">
-    <form action="" method="post" id="jobEditForm">{% csrf_token %}
-        {{user_form.name.label_tag}} {{user_form.name}}
-        {{user_form.phone.label_tag}} {{user_form.phone}}
-        {{user_form.phone.errors}}
-        {% comment %}
-            {{user_form.displayname.label_tag}} {{user_form.displayname}}<br>
-            {{user_form.displayname.errors}}
-            
-        {% endcomment %}
-        {{user_form.email.label_tag}} {{user_form.email}}<br>
-        {{user_form.email.errors}}
-        {{user_form.city.label_tag}} {{user_form.city}}
-        {{user_form.streetaddress.label_tag}} {{user_form.streetaddress}}
-        <br><button type="submit" class="btn btn-block btn-default submit">Update</button><br>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+    <h3 class="text-center">Please update your details!</h3>
+    <br><p class="text-muted text-center"><small>For a better carpooling experience ....</small></p>
+      <form class="m-t css-form" role="form" name="form" action="" method="post" novalidate>{% csrf_token %}
+          <div class="form-group">
+              {{user_form.name.label_tag}} {{user_form.name}}
+              <p> 
+                {{ user_form.name.errors }}
+              </p>
+              {{user_form.phone.label_tag}} {{user_form.phone}}
+              <p> {{ user_form.phone.errors }}</p>
+          </div>
+          
+        <button type="submit" class="btn btn-primary btn-block full-width m-b" ng-disabled="form.$invalid || isUnchanged(user)">Start Carpooling!</button>
+          {% comment %}
+            <a class="btn btn-default btn-block" href="{% url 'signup'%}"{>Create an account</a>            
+          {% endcomment %}
+        <small>Seatkhalicha is powered by <a href="http://www.doorsteps.co">Doorsteps</a> &copy; 2015</small>
     </div>
-    <div class="col-md-8">
-                <label>Exact Location on Map</label>
-               {% widget user_form.address_coordinates %}
-    </div>
+    <div class="col-md-4"></div>
   </div>
 
 </div>
@@ -40,3 +40,10 @@
 <script src={% static "js/jquery-2.1.1.js" %}></script>
     <script src={% static "js/bootstrap.min.js" %}></script>
 {% endblock scripts %}
+
+
+
+
+
+
+

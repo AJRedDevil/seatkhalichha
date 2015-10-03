@@ -144,17 +144,17 @@ class UserCreationForm(forms.ModelForm):
             'required': 'Please provide with a password confirmation !',
             'min_length': 'The password has to be more than 6 characters !',
         })
-    city = forms.ChoiceField(
-        choices=CITY_SELECTION,
-        error_messages={
-            'required': 'Name of the city is required !',
-            'invalid_choice': 'Please select one of the options available !'
-        })
+    # city = forms.ChoiceField(
+    #     choices=CITY_SELECTION,
+    #     error_messages={
+    #         'required': 'Name of the city is required !',
+    #         'invalid_choice': 'Please select one of the options available !'
+    #     })
 
-    streetaddress = forms.CharField(
-        error_messages={
-            'required': 'Street Address is required !',
-        })
+    # streetaddress = forms.CharField(
+    #     error_messages={
+    #         'required': 'Street Address is required !',
+    #     })
 
     error_messages = {
         'password_mismatch': _("The two password fields didn't match. \
@@ -182,11 +182,11 @@ class UserCreationForm(forms.ModelForm):
         self.fields['phone'].widget.attrs = {'class': 'form-control'}
         self.fields['password1'].widget.attrs = {'class': 'form-control'}
         self.fields['password2'].widget.attrs = {'class': 'form-control'}
-        self.fields['city'].widget.attrs = {'class': 'form-control'}
-        self.fields['streetaddress'].widget.attrs = {
-            'class': 'form-control',
-            'placeholder': 'Ganeshthan, Kamaladi'
-        }
+        # self.fields['city'].widget.attrs = {'class': 'form-control'}
+        # self.fields['streetaddress'].widget.attrs = {
+        #     'class': 'form-control',
+        #     'placeholder': 'Ganeshthan, Kamaladi'
+        # }
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
@@ -286,17 +286,17 @@ class UserSignupForm(forms.ModelForm):
             'required': 'Password confirmation required !',
             'min_length': 'The password has to be more than 6 characters !',
         })
-    city = forms.ChoiceField(
-        choices=CITY_SELECTION,
-        error_messages={
-            'required': 'Name of the city is required !',
-            'invalid_choice': 'Please select one of the options available !'
-        })
+    # city = forms.ChoiceField(
+    #     choices=CITY_SELECTION,
+    #     error_messages={
+    #         'required': 'Name of the city is required !',
+    #         'invalid_choice': 'Please select one of the options available !'
+    #     })
 
-    streetaddress = forms.CharField(
-        error_messages={
-            'required': _('Your address is required.'),
-        })
+    # streetaddress = forms.CharField(
+    #     error_messages={
+    #         'required': _('Your address is required.'),
+    #     })
 
     error_messages = {
         'password_mismatch': _("The two password fields didn't match. \
@@ -305,9 +305,9 @@ class UserSignupForm(forms.ModelForm):
         'mobile_phone': _("Please enter a valid mobile number!"),
     }
 
-    address_coordinates = forms.PointField(
-        required=False
-    )
+    # address_coordinates = forms.PointField(
+    #     required=False
+    # )
 
     class Meta:
         model = UserProfile
@@ -320,14 +320,14 @@ class UserSignupForm(forms.ModelForm):
         self.fields['email'].widget.attrs.update({'class': 'form-control'})
         self.fields['password1'].widget.attrs.update({'class': 'form-control'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control'})
-        self.fields['city'].widget.attrs.update({'class': 'form-control ip-form'})
-        self.fields['address_coordinates'].widget = GMapPointWidget(
-            attrs={'map_width': 750, 'map_height': 500})
-        self.fields['address_coordinates'].widget.attrs={'class': 'form-control'}
-        self.fields['streetaddress'].widget.attrs = {
-            'class': 'form-control',
-            'placeholder': 'Ganeshthan, Kamaladi'
-        }
+        # self.fields['city'].widget.attrs.update({'class': 'form-control ip-form'})
+        # self.fields['address_coordinates'].widget = GMapPointWidget(
+        #     attrs={'map_width': 750, 'map_height': 500})
+        # self.fields['address_coordinates'].widget.attrs={'class': 'form-control'}
+        # self.fields['streetaddress'].widget.attrs = {
+        #     'class': 'form-control',
+        #     'placeholder': 'Ganeshthan, Kamaladi'
+        # }
 
 
     def clean_password2(self):
@@ -458,14 +458,14 @@ class HMUserChangeForm(UserChangeForm):
         self.fields['phone'].widget.attrs = {'class': 'form-control'}
         self.fields['email'].widget.attrs = {'class': 'form-control'}
         # self.fields['displayname'].widget.attrs = {'class': 'form-control'}
-        self.fields['city'].widget.attrs = {'class': 'form-control'}
-        self.fields['address_coordinates'].widget = GMapPointWidget(
-            attrs={'map_width': 750, 'map_height': 500})
-        self.fields['address_coordinates'].widget.attrs={'class': 'form-control'}
-        self.fields['streetaddress'].widget.attrs = {
-            'class': 'form-control',
-            'placeholder': 'Ganeshthan, Kamaladi'
-        }
+        # self.fields['city'].widget.attrs = {'class': 'form-control'}
+        # self.fields['address_coordinates'].widget = GMapPointWidget(
+        #     attrs={'map_width': 750, 'map_height': 500})
+        # self.fields['address_coordinates'].widget.attrs={'class': 'form-control'}
+        # self.fields['streetaddress'].widget.attrs = {
+        #     'class': 'form-control',
+        #     'placeholder': 'Ganeshthan, Kamaladi'
+        # }
 
     profile_image = forms.ImageField(
         required=False
@@ -487,21 +487,21 @@ class HMUserChangeForm(UserChangeForm):
             'min_length': 'The username has to be more than 6 characters !'}
     )
 
-    city = forms.ChoiceField(
-        choices=CITY_SELECTION,
-        error_messages={
-            'required': 'Name of the city is required !',
-            'invalid_choice': 'Please select one of the options available !'
-        }
-    )
+    # city = forms.ChoiceField(
+    #     choices=CITY_SELECTION,
+    #     error_messages={
+    #         'required': 'Name of the city is required !',
+    #         'invalid_choice': 'Please select one of the options available !'
+    #     }
+    # )
 
-    streetaddress = forms.CharField(
-        error_messages={'required': 'Street Address is required !', }
-    )
+    # streetaddress = forms.CharField(
+    #     error_messages={'required': 'Street Address is required !', }
+    # )
 
-    address_coordinates = forms.PointField(
-        required=False
-    )
+    # address_coordinates = forms.PointField(
+    #     required=False
+    # )
 
     error_messages = {
         'country_notsupported': _("Your country is not supported right now!"),
@@ -510,7 +510,7 @@ class HMUserChangeForm(UserChangeForm):
 
     class Meta:
         model = UserProfile
-        fields = ['name', 'phone', 'profile_image', 'address_coordinates', 'email']
+        fields = ['name', 'phone', 'profile_image', 'email']
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Hari Wagle'}),
             'phone': forms.TextInput(attrs={'placeholder': '9802036633'}),
@@ -520,7 +520,7 @@ class HMUserChangeForm(UserChangeForm):
                 'required': 'Your name is required!',
             },
             'phone': {
-                'required': 'Please provide with a valid phone address!',
+                'required': 'Please provide with a valid phone number!',
             },
         }
 

@@ -99,8 +99,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         unique=True,
         default=getUniqueUUID
     )
-    name = models.CharField(_('name'), max_length=30, blank=True)
-    email = models.EmailField(max_length=254, null=True, unique=True)
+    name = models.CharField(_('name'), max_length=30, blank=False)
+    email = models.EmailField(_('Email Address'), max_length=254, null=True, blank=False, unique=True)
     # displayname = models.CharField(_('displayname'), max_length=30, unique=True)
     phone_status = models.BooleanField(_('phone_status'), default=False)
     phone = PhoneNumberField(_('phone'), max_length=16, unique=True)
@@ -114,26 +114,26 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(_('is_staff'), default=False)
     # is_superuser = models.BooleanField(_('is_superuser'), default=False)
     is_active = models.BooleanField(default=True)
-    address = jsonfield.JSONField(
-        _('address'),
-        default=dict(streetaddress='Tripureshwore', city='Kathmandu'),
-        max_length=9999,
-        blank=True
-    )
-    address_coordinates = models.PointField(
-        _('address_coordinates'),
-        srid=4326,
-        default='',
-        blank=True,
-        null=True
-    )
-    current_address = models.PointField(
-        _('current_address'),
-        srid=4326,
-        default='',
-        blank=True,
-        null=True
-    )
+    # address = jsonfield.JSONField(
+    #     _('address'),
+    #     default=dict(streetaddress='Tripureshwore', city='Kathmandu'),
+    #     max_length=9999,
+    #     blank=True
+    # )
+    # address_coordinates = models.PointField(
+    #     _('address_coordinates'),
+    #     srid=4326,
+    #     default='',
+    #     blank=True,
+    #     null=True
+    # )
+    # current_address = models.PointField(
+    #     _('current_address'),
+    #     srid=4326,
+    #     default='',
+    #     blank=True,
+    #     null=True
+    # )
     extrainfo = jsonfield.JSONField(
         _('extrainfo'),
         default='{}',
@@ -141,7 +141,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     )
 
     USERNAME_FIELD = 'phone'
-    REQUIRED_FIELDS = ['displayname', 'name']
+    REQUIRED_FIELDS = ['name']
 
     objects = UserManager()
 
