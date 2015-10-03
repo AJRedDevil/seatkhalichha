@@ -1,0 +1,53 @@
+{% extends "admin/base.html" %}
+{% load pipeline %}
+{% load staticfiles floppyforms%}
+{% block localhead %}  
+{% stylesheet 'signin' %}
+{{ user_form.media }}
+{% endblock localhead %}
+{% block content %} 
+
+<div class='page-container container list-table'>
+<div class="hora-job-form">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+    <h3 class="text-center">Please update your details!</h3>
+    <br><p class="text-muted text-center"><small>For a better carpooling experience ....</small></p>
+      <form class="m-t css-form" role="form" name="form" action="" method="post" novalidate>{% csrf_token %}
+          <div class="form-group" ng-controller="Validation">
+          <div class="form-group">
+              {{user_form.name.label_tag}} {{user_form.name}}
+              <p> 
+                {{ user_form.name.errors }}
+              </p>
+              {{user_form.phone.label_tag}} {{user_form.phone}}
+              <p> {{ user_form.phone.errors }}</p>
+              {{user_form.email.label_tag}} {{user_form.email}}
+              <p> {{ user_form.email.errors }}</p>                  
+            </div>
+          </div>
+          
+        <button type="submit" class="btn btn-primary btn-block full-width m-b" ng-disabled="form.$invalid || isUnchanged(user)">Start Carpooling!</button>
+          {% comment %}
+            <a class="btn btn-default btn-block" href="{% url 'signup'%}"{>Create an account</a>            
+          {% endcomment %}
+        <small>Seatkhalicha is powered by <a href="http://www.doorsteps.co">Doorsteps</a> &copy; 2015</small>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+</div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src={% static "js/jquery-2.1.1.js" %}></script>
+    <script src={% static "js/bootstrap.min.js" %}></script>
+{% endblock scripts %}
+
+
+
+
+
+
+

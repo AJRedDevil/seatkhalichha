@@ -24,7 +24,7 @@ from apps.carpools.handler import CarpoolReqManager, CarpoolManager
 import apps.users.forms as userforms
 
 #All external imports (libs, packages)
-from libs.fbhelper import FBHandler
+# from libs.fbhelper import FBHandler
 # from libs.sparrow_handler import Sparrow
 # import apps.jobs.handler as jobs_handler
 # from libs import email_handler
@@ -909,30 +909,70 @@ def editUserDetail(request, userref):
     user_form = userforms.HMUserChangeForm(initial=customerdata)
     return render(request, 'userdetails.html', locals())
 
+
 def acquireInfo(request):
+    """
+    This save's additional user info post the social login is successfull
+    """
+    user_data = request.session.get('details')
+    # fb = FBHandler()
     try:
         backend=request.session['partial_pipeline']['backend']
+        logging.warn(backend)
+        if backend == None:
+            return redirect('signin')
     except Exception, e:
         return redirect('signin')
 
-    if request.POST:
-        user_form=userforms.HMUserChangeForm(request.POST)
-        if user_form.is_valid():
-            data=request.POST
-            backend=request.session['partial_pipeline']['backend']
-            request.session['user_valid']=True
-            request.session['phone']=data.get('phone')
-            request.session['name']=data.get('name')
-            request.session['displayname']=data.get('displayname')
-            request.session['email']=data.get('email')
-            request.session['city']=data.get('city')
-            request.session['streetaddress']=data.get('streetaddress')
-            request.session['address_coordinates']=data.get('address_coordinates')
-            return redirect('social:complete', backend=backend)
+    if backend == 'twitter':
+        if request.POST:
+            user_form = userforms.UserTwitterSignupForm(request.POST)
+            logging.warn(user_form.errors)
+            if user_form.is_valid():
+                data = request.POST
+                userdata = user_form.save(commit=False)
+                userref = userdata.userref
+                backend = request.session['partial_pipeline']['backend']
+                request.session['user_valid'] = True
+                request.session['phone'] = data.get('phone')
+                request.session['name'] = data.get('name')
+                request.session['email'] = data.get('email')
+                # request.session['displayname']=data.get('displayname')
+                # request.session['email']=data.get('email')
+                # request.session['city']=data.get('city')
+                # request.session['streetaddress']=data.get('streetaddress')
+                # request.session['address_coordinates']=data.get('address_coordinates')
+                return redirect('social:complete', backend=backend)
 
-        if user_form.errors:
-            logger.debug("Acquire form has erorrs %s", user_form.errors)
-            return render(request, 'acquireInfo.html', locals())
+            if user_form.errors:
+                logging.warn(user_form)
+                logger.debug("Acquire form has erorrs %s", user_form.errors)
+                return render(request, 'acquireInfo_twitter.html', locals())
 
-    user_form = userforms.HMUserChangeForm()
-    return render(request, 'acquireInfo.html', locals())
+        user_form = userforms.UserTwitterSignupForm()
+        return render(request, 'acquireInfo_twitter.html', locals())
+
+    if backend == 'facebook':
+        if request.POST:
+            user_form = userforms.UserSocialSignupForm(request.POST)
+            if user_form.is_valid():
+                data = request.POST
+                userdata = user_form.save(commit=False)
+                userref = userdata.userref
+                backend = request.session['partial_pipeline']['backend']
+                request.session['user_valid'] = True
+                request.session['phone'] = data.get('phone')
+                request.session['name'] = data.get('name')
+                # request.session['displayname']=data.get('displayname')
+                # request.session['email']=data.get('email')
+                # request.session['city']=data.get('city')
+                # request.session['streetaddress']=data.get('streetaddress')
+                # request.session['address_coordinates']=data.get('address_coordinates')
+                return redirect('social:complete', backend=backend)
+
+            if user_form.errors:
+                logger.debug("Acquire form has erorrs %s", user_form.errors)
+                return render(request, 'acquireInfo.html', locals())
+
+        user_form = userforms.UserSocialSignupForm()
+        return render(request, 'acquireInfo.html', locals())

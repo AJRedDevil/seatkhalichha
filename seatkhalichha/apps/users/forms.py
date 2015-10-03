@@ -868,3 +868,59 @@ class SMSUserSignupForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class UserSocialSignupForm(forms.ModelForm):
+    """
+    This is for when the user signs up with a social account
+    """
+    def __init__(self, *args, **kwargs):
+        super(forms.ModelForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs = {'class': 'form-control'}
+        self.fields['phone'].widget.attrs = {'class': 'form-control'}
+        # self.fields['email'].widget.attrs = {'class': 'form-control'}
+
+    class Meta:
+        model = UserProfile
+        fields = ['name', 'phone',]
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Your Name'}),
+            'phone': forms.TextInput(attrs={'placeholder': 'Your mobile number.'}),
+        }
+        error_messages = {
+            'name': {
+                'required': 'Your name is required!',
+            },
+            'phone': {
+                'required': 'Please provide with a valid mobile phone number!',
+            },
+        }
+
+class UserTwitterSignupForm(forms.ModelForm):
+    """
+    This is for when the user signs up with a social account
+    """
+    def __init__(self, *args, **kwargs):
+        super(forms.ModelForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs = {'class': 'form-control'}
+        self.fields['phone'].widget.attrs = {'class': 'form-control'}
+        self.fields['email'].widget.attrs = {'class': 'form-control'}
+
+    class Meta:
+        model = UserProfile
+        fields = ['name', 'phone', 'email']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Your Name'}),
+            'phone': forms.TextInput(attrs={'placeholder': 'Your mobile number.'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Your email address.'}),
+        }
+        error_messages = {
+            'name': {
+                'required': 'Your name is required!',
+            },
+            'phone': {
+                'required': 'Please provide with a valid mobile number!',
+            },
+            'email': {
+                'required': 'Please provide with a valid email address!',
+            },
+        }
