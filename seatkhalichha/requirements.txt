@@ -1,5 +1,5 @@
 Django==2.2.27
-Pillow==9.0.0
+Pillow==9.0.1
 PyJWT==1.4.0
 South==1.0.1
 dj-database-url==0.3.0
