@@ -19,7 +19,7 @@ djrill==1.2.0
 facebook-sdk==0.4.0
 futures==3.0.3
 gunicorn==19.5.0
-html5lib==0.9999999
+html5lib==0.99999999
 jsonfield==1.0.0
 libsass==0.8.0
 oauthlib==1.0.3
